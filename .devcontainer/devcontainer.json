@@ -1,0 +1,4 @@
+{
+"image": "node:24",
+"postCreateCommand": "npm install -g @anthropic-ai/claude-code"
+}

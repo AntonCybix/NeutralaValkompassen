@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Valkompass 2026 – neutral & anonym</title>
+<style>
+  :root{
+    --bg:#f4f5f7; --surface:#ffffff; --surface-2:#fafbfc;
+    --ink:#16181d; --muted:#646b78; --faint:#9aa1ad;
+    --border:#e6e8ec; --border-strong:#d6d9df;
+    --accent:#3f6275; --accent-soft:#e8eef1; --accent-ink:#2c4756;
+    --pos:#4f7a63; --neg:#8a5b5b; --neutral:#8a8f99;
+    --radius:18px; --radius-sm:12px;
+    --shadow:0 1px 2px rgba(16,20,30,.04), 0 8px 30px rgba(16,20,30,.06);
+    --maxw:680px;
+    --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0e1014; --surface:#171a20; --surface-2:#1c2027;
+      --ink:#eef0f3; --muted:#9aa2af; --faint:#6b7280;
+      --border:#262b33; --border-strong:#323844;
+      --accent:#7fa7ba; --accent-soft:#1d2933; --accent-ink:#bcd4df;
+      --pos:#7cae93; --neg:#c08e8e; --neutral:#878d98;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 34px rgba(0,0,0,.4);
+    }
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg); color:var(--ink); font-family:var(--font);
+    line-height:1.5; -webkit-font-smoothing:antialiased;
+    padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:20px 18px 64px}
+  .screen{animation:fade .35s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  h1{font-size:30px; line-height:1.15; letter-spacing:-.02em; margin:0 0 10px; font-weight:740}
+  h2{font-size:21px; letter-spacing:-.01em; margin:0 0 6px; font-weight:680}
+  p{margin:0 0 14px; color:var(--muted)}
+  .lead{font-size:16.5px}
+  .tag{display:inline-flex; align-items:center; gap:7px; font-size:12.5px; font-weight:600;
+    color:var(--accent-ink); background:var(--accent-soft); padding:5px 11px; border-radius:999px; letter-spacing:.01em}
+  .card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    box-shadow:var(--shadow); padding:22px}
+  .stack>*+*{margin-top:14px}
+
+  /* buttons */
+  button{font-family:inherit; cursor:pointer; border:none; background:none; color:inherit}
+  .btn{display:inline-flex; align-items:center; justify-content:center; gap:9px;
+    background:var(--accent); color:#fff; font-size:16px; font-weight:640;
+    padding:15px 26px; border-radius:14px; width:100%; transition:transform .12s, filter .15s, opacity .15s}
+  .btn:hover{filter:brightness(1.06)}
+  .btn:active{transform:scale(.985)}
+  .btn:disabled{opacity:.4; cursor:not-allowed}
+  .btn.ghost{background:transparent; color:var(--accent-ink); border:1px solid var(--border-strong); box-shadow:none}
+  .btn.subtle{background:var(--accent-soft); color:var(--accent-ink); box-shadow:none}
+  .linkbtn{color:var(--muted); font-size:14px; font-weight:560; text-decoration:underline; text-underline-offset:3px}
+  .linkbtn:hover{color:var(--ink)}
+  .row{display:flex; gap:10px; align-items:center}
+
+  /* progress */
+  .topbar{display:flex; align-items:center; gap:12px; margin-bottom:18px}
+  .crumbs{display:flex; gap:6px; flex:1}
+  .crumb{height:6px; flex:1; border-radius:999px; background:var(--border); overflow:hidden}
+  .crumb i{display:block; height:100%; width:0; background:var(--accent); border-radius:999px; transition:width .4s cubic-bezier(.4,0,.2,1)}
+  .stepmeta{font-size:13px; color:var(--faint); font-weight:560; white-space:nowrap}
+
+  /* fairness chips */
+  .fair{list-style:none; margin:18px 0 0; padding:0; display:grid; gap:10px}
+  .fair li{display:flex; gap:12px; align-items:flex-start; font-size:14.5px; color:var(--ink)}
+  .fair .ic{flex:none; width:30px; height:30px; border-radius:9px; background:var(--accent-soft);
+    color:var(--accent-ink); display:grid; place-items:center; font-size:15px}
+  .fair b{font-weight:640}
+  .fair span{color:var(--muted)}
+
+  /* statement card */
+  .qtag{font-size:12.5px; font-weight:640; color:var(--accent-ink); text-transform:uppercase; letter-spacing:.05em}
+  .qtext{font-size:23px; line-height:1.28; letter-spacing:-.01em; font-weight:660; margin:10px 0 4px; min-height:2.2em}
+  .qnote{font-size:13px; color:var(--faint); margin-bottom:18px}
+  .likert{display:grid; gap:9px}
+  .lk{display:flex; align-items:center; gap:13px; width:100%; text-align:left;
+    background:var(--surface-2); border:1.5px solid var(--border); border-radius:13px; padding:13px 15px;
+    font-size:15.5px; font-weight:560; transition:border-color .12s, background .12s, transform .1s}
+  .lk:hover{border-color:var(--border-strong)}
+  .lk:active{transform:scale(.99)}
+  .lk .dot{flex:none; width:18px; height:18px; border-radius:50%; border:2px solid var(--border-strong); transition:.12s}
+  .lk[data-v="2"] .dot,.lk[data-v="1"] .dot{border-color:var(--pos)}
+  .lk[data-v="-2"] .dot,.lk[data-v="-1"] .dot{border-color:var(--neg)}
+  .lk.sel{border-color:var(--accent); background:var(--accent-soft)}
+  .lk.sel .dot{background:var(--accent); border-color:var(--accent); box-shadow:inset 0 0 0 3px var(--surface)}
+  .qfoot{display:flex; align-items:center; justify-content:space-between; margin-top:18px; gap:10px}
+  .star{display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:580; color:var(--muted);
+    border:1.5px solid var(--border); border-radius:11px; padding:9px 13px; transition:.12s}
+  .star.on{color:var(--accent-ink); border-color:var(--accent); background:var(--accent-soft)}
+  .star svg{width:16px;height:16px}
+
+  /* budget / priorities */
+  .meter{display:flex; align-items:baseline; gap:8px; margin:2px 0 4px}
+  .meter b{font-size:15px}
+  .area{border:1px solid var(--border); border-radius:14px; padding:14px 15px; background:var(--surface-2)}
+  .area+.area{margin-top:11px}
+  .area h3{margin:0; font-size:16px; font-weight:640; letter-spacing:-.01em}
+  .area p{margin:3px 0 11px; font-size:13px}
+  .step{display:flex; align-items:center; gap:12px}
+  .step .pm{flex:none; width:42px; height:42px; border-radius:12px; border:1.5px solid var(--border);
+    background:var(--surface); color:var(--accent-ink); font-size:24px; line-height:1; font-weight:500;
+    display:grid; place-items:center; transition:.12s}
+  .step .pm:hover:not(:disabled){border-color:var(--accent); background:var(--accent-soft)}
+  .step .pm:active:not(:disabled){transform:scale(.92)}
+  .step .pm:disabled{opacity:.28; cursor:not-allowed}
+  .step .val{flex:1; display:flex; flex-direction:column; align-items:center; gap:6px}
+  .coins{display:flex; gap:5px}
+  .coins i{width:13px; height:13px; border-radius:50%; background:var(--border); transition:background .15s, transform .15s}
+  .coins i.f{background:var(--accent); transform:scale(1.06)}
+  .step .lvl{font-size:12.5px; font-weight:620; color:var(--muted); letter-spacing:.01em}
+  .area.funded{border-color:var(--accent); background:var(--accent-soft)}
+  .budgetbar{position:sticky; bottom:10px; margin-top:18px; background:var(--surface); border:1px solid var(--border-strong);
+    border-radius:14px; padding:13px 16px; box-shadow:var(--shadow); display:flex; align-items:center; gap:14px}
+  .budgetbar .fill{flex:1; height:9px; border-radius:999px; background:var(--border); overflow:hidden}
+  .budgetbar .fill i{display:block; height:100%; background:var(--accent); width:0; transition:width .3s}
+  .budgetbar small{color:var(--muted); font-size:12.5px; white-space:nowrap; font-weight:560}
+  .budgetbar small b{color:var(--ink); font-weight:740; font-variant-numeric:tabular-nums}
+  .budgetbar.empty .fill i{background:var(--pos)}
+  .budgetbar.empty small b{color:var(--pos)}
+
+  /* results */
+  .res{margin-top:14px}
+  .pcard{border:1px solid var(--border); border-radius:14px; background:var(--surface); overflow:hidden; transition:border-color .15s}
+  .pcard+.pcard{margin-top:11px}
+  .pcard.top{border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft)}
+  .phead{display:flex; align-items:center; gap:14px; padding:15px 16px; width:100%; text-align:left}
+  .chip{flex:none; width:46px; height:46px; border-radius:12px; display:grid; place-items:center;
+    background:var(--surface-2); border:1px solid var(--border-strong); font-weight:720; font-size:15px; letter-spacing:-.02em; color:var(--ink)}
+  .pmain{flex:1; min-width:0}
+  .pname{font-size:15.5px; font-weight:650; display:flex; align-items:center; gap:8px}
+  .rank{font-size:12px; color:var(--faint); font-weight:600}
+  .pbar{height:7px; border-radius:999px; background:var(--border); overflow:hidden; margin-top:7px}
+  .pbar i{display:block; height:100%; background:var(--accent); width:0; border-radius:999px; transition:width .8s cubic-bezier(.3,0,.2,1)}
+  .pct{flex:none; font-size:19px; font-weight:740; letter-spacing:-.02em; min-width:48px; text-align:right}
+  .chev{flex:none; color:var(--faint); transition:transform .2s}
+  .pcard.open .chev{transform:rotate(180deg)}
+  .pdetail{display:none; padding:2px 16px 18px; border-top:1px solid var(--border)}
+  .pcard.open .pdetail{display:block; animation:fade .25s}
+  .pdetail h4{margin:14px 0 7px; font-size:12.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--faint); font-weight:680}
+  .stmtline{display:flex; gap:9px; align-items:flex-start; font-size:13.5px; padding:5px 0; color:var(--ink)}
+  .stmtline .m{flex:none; width:18px; height:18px; border-radius:6px; display:grid; place-items:center; font-size:12px; font-weight:800; margin-top:1px}
+  .m.agree{background:rgba(79,122,99,.16); color:var(--pos)}
+  .m.disagree{background:rgba(138,91,91,.16); color:var(--neg)}
+  .m.mid{background:var(--border); color:var(--muted)}
+  .taglist{display:flex; flex-wrap:wrap; gap:6px}
+  .mini{font-size:12px; font-weight:580; padding:4px 10px; border-radius:999px; background:var(--surface-2); border:1px solid var(--border); color:var(--muted)}
+  .cov{font-size:12px; color:var(--faint); margin-top:2px}
+  .src a{color:var(--accent-ink); font-size:12.5px; text-decoration:underline; text-underline-offset:2px; display:block; margin-top:4px}
+  .disclaim{font-size:12.5px; color:var(--faint); margin-top:18px; line-height:1.5}
+
+  details.method{margin-top:16px; border:1px solid var(--border); border-radius:14px; background:var(--surface); overflow:hidden}
+  details.method summary{cursor:pointer; padding:14px 16px; font-weight:620; font-size:14.5px; list-style:none; display:flex; justify-content:space-between; align-items:center}
+  details.method summary::-webkit-details-marker{display:none}
+  details.method[open] summary{border-bottom:1px solid var(--border)}
+  details.method .body{padding:14px 16px; font-size:13.5px; color:var(--muted)}
+  details.method .body p{font-size:13.5px}
+  details.method .body b{color:var(--ink)}
+  .foot{text-align:center; margin-top:26px; font-size:12px; color:var(--faint)}
+  .hide{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+
+<script>
+const DATA = {"meta": {"title": "Valkompassdata – svenska riksdagspartiernas politik inför valet 2026", "retrieved": "2026-05-29", "limitations": ["Detta är en källbaserad snapshot, inte en juridiskt komplett redovisning av varje motion eller samtliga underdokument.", "Där slutligt nationellt valmanifest/valplattform för 2026 inte hittades i öppna officiella källor är status markerad som ej hittad och data bygger på valkampanj, handlingsprogram, inriktningsdokument, budgetmaterial och policyrapporter.", "Budgetbelopp är endast införda när de uttryckligen framgick av partiets öppna material som hämtades. Full finansieringstabell bör valideras mot respektive fullständiga budgetmotion/budgetproposition före publicering.", "Fältet valkompass_axes är härlett från partipositionerna och ska ses som startmaterial för redaktionell normalisering, inte som automatisk slutklassning."]}, "party_order": ["S", "M", "SD", "V", "C", "KD", "MP", "L"], "party_full": {"S": "Socialdemokraterna", "M": "Moderaterna", "SD": "Sverigedemokraterna", "V": "Vänsterpartiet", "C": "Centerpartiet", "KD": "Kristdemokraterna", "MP": "Miljöpartiet", "L": "Liberalerna"}, "parties": [{"id": "S", "name": "Socialdemokraterna", "priorities": ["En stark ekonomi som gynnar vanligt folk", "En välfärd som går att lita på", "Trygghet och säkerhet i hela landet"], "sources": [{"id": "S_VAL_2026", "title": "Val 2026: Plan för Sverige", "url": "https://www.socialdemokraterna.se/val-2026"}, {"id": "S_PLAN_NEWS", "title": "Plan för Sverige – Socialdemokraterna presenterar valplattform 2026", "url": "https://www.socialdemokraterna.se/nyheter/nyheter/2026-02-05-plan-for-sverige---socialdemokraterna-presenterar-valplattform-2026"}, {"id": "S_BUDGET_2026", "title": "Socialdemokraternas förslag till budget för 2026 – Ny riktning för Sverige", "url": "https://www.socialdemokraterna.se/nyheter/nyheter/2025-10-06-socialdemokraternas-forslag-till-budget-for-2026---ny-riktning-for-sverige"}, {"id": "S_SPRING_2026", "title": "S vårbudget för 2026: Plan för Sverige – en vårbudget för vanligt folk", "url": "https://www.socialdemokraterna.se/nyheter/nyheter/2026-04-28-s-varbudget-for-2026-plan-for-sverige---en-varbudget-for-vanligt-folk"}]}, {"id": "M", "name": "Moderaterna", "priorities": ["Hårt arbetande människor ska få mer kvar i plånboken", "Arbetslinjen och lägre skatt på arbete/pension", "Trygghet, rättsväsende och förebyggande insatser", "Försvar och säkerhet", "Skola och välfärd"], "sources": [{"id": "M_BUDGET_2026", "title": "En budget för hårt arbetande människor", "url": "https://moderaterna.se/nyhet/en-budget-for-hart-arbetande-manniskor/"}, {"id": "M_BUDGET_PASSED_2026", "title": "Moderaternas budget räddar Sverige från Socialdemokraternas budgethål", "url": "https://moderaterna.se/nyhet/moderaternas-budget-raddar-sverige-fran-socialdemokraternas-budgethal/"}, {"id": "M_HANDLINGSPROGRAM", "title": "Handlingsprogram för 2030-talet", "url": "https://moderaterna.se/handlingsprogram-for-2030-talet/"}, {"id": "M_POLITIK", "title": "Vår politik", "url": "https://moderaterna.se/var-politik/"}]}, {"id": "SD", "name": "Sverigedemokraterna", "priorities": ["Trygg i Sverige", "Fri i Sverige", "Svensk i Sverige", "Stram migration och kravbaserad integration", "Hårdare kriminalpolitik och starkt totalförsvar"], "sources": [{"id": "SD_VALPLATFORM_2026_DIR", "title": "Inriktning för Valplattform 2026 samt partiordförandens förhandlingsmandat", "url": "https://event.sd.se/wp-content/uploads/2025/09/forhandlingsmandat-och-riktlinjer-for-valplattformen.pdf"}, {"id": "SD_VAD_VI_VILL", "title": "Vad vi vill", "url": "https://www.sd.se/vad-vi-vill/"}, {"id": "SD_ISK_2026", "title": "Sänkt skatt på sparande genom skattefri grundnivå på ISK", "url": "https://www.sd.se/reforms/sankt-skatt-pa-sparande-genom-att-en-grundniva-pa-300-000-kr-i-isk-gors-skattefri/"}]}, {"id": "V", "name": "Vänsterpartiet", "priorities": ["Social och ekonomisk trygghet", "Rättvis klimatomställning", "Stark välfärd utan marknadsstyrning", "Skolan först och tillgänglig sjukvård", "Jämlikhet, antirasism och folkrätt"], "sources": [{"id": "V_VALPLATFORM_2026", "title": "Preliminär valplattform efter beslut på kongressen 2026", "url": "https://www.vansterpartiet.se/wp-content/uploads/2026/04/Preliminar-Valplattform-efter-beslut-pa-kongressen-2026.pdf"}, {"id": "V_BUDGET_2026", "title": "Byt regering för ett starkare och tryggare Sverige", "url": "https://www.vansterpartiet.se/nyheter/byt-regering-for-ett-starkare-och-tryggare-sverige/"}]}, {"id": "C", "name": "Centerpartiet", "priorities": ["Fler jobb", "Lägre utsläpp", "Ett Sverige som fungerar i hela landet", "Frihet, ansvar, äganderätt och lokal självbestämmanderätt"], "sources": [{"id": "C_VALPLAN_2026", "title": "Centerpartiets valplan 2026", "url": "https://www.centerpartiet.se/download/18.2ee87ccd19c47bc375b8c89/1770910987622/Handout_press_valplan2026.pdf"}, {"id": "C_BUDGET_2026", "title": "Fler jobb och lägre utsläpp – en budget för framtiden", "url": "https://www.centerpartiet.se/nyheter/2025/2025-10-07-fler-jobb-och-lagre-utslapp---en-budget-for-framtiden"}, {"id": "C_SPRING_2026", "title": "Centerpartiets vårbudget 2026", "url": "https://www.centerpartiet.se/download/18.4dd7552719d9a524ff529860/1777275594958/V%C3%A5rbudgeten%202026.pdf"}]}, {"id": "KD", "name": "Kristdemokraterna", "priorities": ["Familjens ekonomi", "Sjukvård med samlat ansvar och avskaffade regioner", "Trygghet och samhällsgemenskap", "Äldre och värdig omsorg", "Småföretagande och hjärtlandet"], "sources": [{"id": "KD_BUDGET_2026", "title": "En budget för familjen", "url": "https://kristdemokraterna.se/var-politik/en-budget-for-familjen"}, {"id": "KD_REPORTS", "title": "Rapporter och dokument", "url": "https://kristdemokraterna.se/var-politik/rapporter-och-dokument"}, {"id": "KD_TRO_PA_SVERIGE", "title": "Tro på Sverige – Ebba Buschs tal på KD-dagarna 2026", "url": "https://kristdemokraterna.se/arkiv/nyheter/2026/2026-04-17-tro-pa-sverige---ebbas-tal-pa-kd-dagarna-2026"}, {"id": "KD_PROMISE_TRACKER", "title": "Vårt hem blir tryggare och starkare", "url": "https://kristdemokraterna.se/var-politik/vart-hem-blir-tryggare-och-starkare"}]}, {"id": "MP", "name": "Miljöpartiet", "priorities": ["Klimat", "Natur och biologisk mångfald", "Jämlikhet och stark välfärd", "Rättvis klimatomställning", "Demokrati, kultur och civilsamhälle"], "sources": [{"id": "MP_VALBUDSKAP_2026", "title": "MP: Sverige vinner på grön politik – valbudskap inför 2026", "url": "https://www.mp.se/just-nu/mp-sverige-vinner-pa-gron-politik-valbudskap-infor-2026/"}, {"id": "MP_HANDLINGSPROGRAM_2026", "title": "Politiskt handlingsprogram 2026", "url": "https://www.mp.se/politik/politiskt-handlingsprogram-2026/"}, {"id": "MP_HANDLINGSPROGRAM_PDF", "title": "Politiskt handlingsprogram 2026–2030", "url": "https://www.mp.se/wp-content/uploads/2026/04/politiskt-handlingsprogram-2026-2030.pdf"}, {"id": "MP_BUDGET_PAGE_2026", "title": "MP:s budgetmotion 2026", "url": "https://www.mp.se/mps-budgetmotion-2026/"}, {"id": "MP_BUDGET_NEWS_2026", "title": "MP:s budget: Sverige förtjänar bättre", "url": "https://www.mp.se/just-nu/mps-budget-sverige-fortjanar-battre/"}]}, {"id": "L", "name": "Liberalerna", "priorities": ["Framtiden börjar i skolan", "Frihet i vardagen", "Sänkta inkomstskatter och stärkt ekonomi", "Trygghet och gängkriminalitet ska tryckas tillbaka", "Eurofrågan, public service och LSS som frihetsreformer"], "sources": [{"id": "L_CAMPAIGN_2026", "title": "Liberalernas valkampanj inför valet 2026", "url": "https://www.liberalerna.se/simona-mohamsson/liberalernas-valkampanj-infor-valet-2026"}, {"id": "L_BUDGET_2026", "title": "En budget för framtidstro", "url": "https://www.liberalerna.se/liberalerna/en-budget-for-framtidstro"}, {"id": "L_POLITIK", "title": "Vår politik", "url": "https://www.liberalerna.se/politik"}, {"id": "L_SKOLA", "title": "Skola", "url": "https://www.liberalerna.se/politik/skola"}, {"id": "L_INTEGRATION", "title": "Integration", "url": "https://www.liberalerna.se/politik/integration"}]}], "questions": [{"id": "tax_work", "fmt": "likert", "text": "Skatten på arbete och pension bör sänkas.", "issue": "economy_tax", "positions": {"S": -0.5, "M": 1, "SD": 1, "V": -1, "C": null, "KD": 1, "MP": null, "L": 1}}, {"id": "food_vat", "fmt": "likert", "text": "Matmomsen bör sänkas, åtminstone tillfälligt.", "issue": "economy_tax", "positions": {"S": null, "M": 1, "SD": null, "V": null, "C": null, "KD": 1, "MP": null, "L": 1}}, {"id": "child_benefit", "fmt": "likert", "text": "Barnbidrag och studiestöd bör höjas.", "issue": "economy_tax", "positions": {"S": 1, "M": null, "SD": null, "V": 1, "C": null, "KD": 0.5, "MP": 1, "L": null}}, {"id": "wealth_tax", "fmt": "likert", "text": "Höga inkomster och förmögenheter bör beskattas hårdare.", "issue": "economy_tax", "positions": {"S": 0.5, "M": null, "SD": null, "V": 1, "C": null, "KD": null, "MP": null, "L": null}}, {"id": "bank_tax", "fmt": "likert", "text": "Banker bör beskattas extra för att finansiera välfärd.", "issue": "economy_tax", "positions": {"S": 1, "M": null, "SD": null, "V": 1, "C": null, "KD": null, "MP": null, "L": null}}, {"id": "isk_taxfree", "fmt": "likert", "text": "Sparande på ISK bör vara skattefritt upp till 300 000 kr.", "issue": "economy_tax", "positions": {"S": null, "M": null, "SD": 1, "V": null, "C": null, "KD": null, "MP": null, "L": 1}}, {"id": "el_tax", "fmt": "likert", "text": "Elskatten bör sänkas.", "issue": "transport_infrastructure", "positions": {"S": 0.5, "M": 1, "SD": 0.5, "V": null, "C": null, "KD": 1, "MP": null, "L": 1}}, {"id": "profit_school", "fmt": "likert", "text": "Vinstuttag i skolan bör förbjudas eller fasas ut.", "issue": "school_education", "positions": {"S": 1, "M": null, "SD": null, "V": 1, "C": null, "KD": null, "MP": 1, "L": 1}}, {"id": "state_school", "fmt": "likert", "text": "Staten bör ta över ansvaret för skolan från kommunerna.", "issue": "school_education", "positions": {"S": null, "M": null, "SD": null, "V": null, "C": null, "KD": null, "MP": null, "L": 1}}, {"id": "small_classes", "fmt": "likert", "text": "Klasserna bör bli mindre och lärartätheten högre.", "issue": "school_education", "positions": {"S": 1, "M": null, "SD": null, "V": null, "C": null, "KD": null, "MP": null, "L": 1}}, {"id": "screen_free", "fmt": "likert", "text": "Mobiler och skärmar bör begränsas kraftigt i skolan.", "issue": "school_education", "positions": {"S": null, "M": null, "SD": null, "V": null, "C": null, "KD": 1, "MP": null, "L": 1}}, {"id": "benefit_requirements", "fmt": "likert", "text": "Bidrag bör villkoras med tydliga krav och motprestation.", "issue": "migration_integration", "positions": {"S": 0.5, "M": 0.5, "SD": 1, "V": null, "C": null, "KD": null, "MP": null, "L": 1}}, {"id": "swedish_culture", "fmt": "likert", "text": "Svensk kultur och det svenska språket bör ges en starkare roll i politiken.", "issue": "democracy_culture", "positions": {"S": 0.5, "M": null, "SD": 1, "V": null, "C": null, "KD": 0.5, "MP": null, "L": 0.5}}, {"id": "police_everywhere", "fmt": "likert", "text": "Det bör finnas synlig polis i alla kommuner.", "issue": "crime_security", "positions": {"S": null, "M": null, "SD": 1, "V": null, "C": 1, "KD": null, "MP": null, "L": null}}, {"id": "islamism_plan", "fmt": "likert", "text": "Sverige bör ha en nationell handlingsplan mot islamism.", "issue": "crime_security", "positions": {"S": null, "M": null, "SD": 1, "V": null, "C": null, "KD": 1, "MP": null, "L": null}}, {"id": "abolish_regions", "fmt": "likert", "text": "Regionerna bör avskaffas och sjukvården styras mer nationellt.", "issue": "welfare_healthcare", "positions": {"S": null, "M": null, "SD": null, "V": 0.5, "C": null, "KD": 1, "MP": null, "L": null}}, {"id": "welfare_resources", "fmt": "likert", "text": "Vård och välfärd bör få mer resurser, även om det kräver höjda anslag.", "issue": "welfare_healthcare", "positions": {"S": 1, "M": null, "SD": 0.5, "V": 1, "C": 0.5, "KD": 0.5, "MP": 1, "L": null}}, {"id": "transit_card", "fmt": "likert", "text": "Staten bör införa ett billigt nationellt kollektivtrafikkort.", "issue": "transport_infrastructure", "positions": {"S": 0.5, "M": null, "SD": null, "V": 1, "C": null, "KD": null, "MP": 1, "L": null}}, {"id": "railway", "fmt": "likert", "text": "Stora satsningar bör göras på järnväg och infrastruktur.", "issue": "transport_infrastructure", "positions": {"S": 0.5, "M": null, "SD": null, "V": 1, "C": 1, "KD": null, "MP": 0.5, "L": 1}}, {"id": "rural_money", "fmt": "likert", "text": "Mer pengar bör gå till landsbygden och hela landet.", "issue": "rural_housing", "positions": {"S": null, "M": null, "SD": 0.5, "V": 0.5, "C": 1, "KD": null, "MP": null, "L": null}}, {"id": "moving_tax", "fmt": "likert", "text": "Skatten vid bostadsförsäljning (flyttskatten) bör sänkas eller avskaffas.", "issue": "rural_housing", "positions": {"S": null, "M": null, "SD": null, "V": null, "C": null, "KD": 1, "MP": null, "L": null}}, {"id": "preschool_fees", "fmt": "likert", "text": "Avgifterna för förskola och fritids bör sänkas.", "issue": "family_social", "positions": {"S": null, "M": 1, "SD": null, "V": null, "C": null, "KD": 1, "MP": null, "L": null}}, {"id": "shorter_workweek", "fmt": "likert", "text": "Arbetstiden bör kortas med bibehållen lön.", "issue": "jobs_business", "positions": {"S": null, "M": null, "SD": null, "V": 1, "C": null, "KD": null, "MP": null, "L": null}}, {"id": "raise_pensions", "fmt": "likert", "text": "Pensionerna bör höjas.", "issue": "family_social", "positions": {"S": 1, "M": null, "SD": null, "V": 1, "C": null, "KD": null, "MP": null, "L": null}}, {"id": "public_service", "fmt": "likert", "text": "Public service bör värnas och stärkas.", "issue": "democracy_culture", "positions": {"S": 0.5, "M": null, "SD": null, "V": null, "C": null, "KD": null, "MP": null, "L": 1}}, {"id": "culture_support", "fmt": "likert", "text": "Kultur och civilsamhälle bör få mer offentligt stöd.", "issue": "democracy_culture", "positions": {"S": null, "M": null, "SD": null, "V": 0.5, "C": null, "KD": null, "MP": 1, "L": null}}, {"id": "employer_fees", "fmt": "likert", "text": "Det bör bli billigare för företag att anställa (lägre arbetsgivaravgifter).", "issue": "jobs_business", "positions": {"S": 0.5, "M": 0.5, "SD": null, "V": null, "C": 1, "KD": 1, "MP": null, "L": 1}}, {"id": "fuel_prices", "fmt": "likert", "text": "Drivmedelspriserna bör hållas nere och klimatkraven på drivmedel sänkas.", "issue": "climate_energy", "positions": {"S": null, "M": null, "SD": 1, "V": null, "C": -0.5, "KD": null, "MP": -1, "L": null}}, {"id": "nature_protection", "fmt": "likert", "text": "Naturskydd som strandskyddet och skyddet av skog bör stärkas.", "issue": "climate_energy", "positions": {"S": null, "M": null, "SD": null, "V": null, "C": null, "KD": null, "MP": 1, "L": null}}, {"id": "renewables", "fmt": "likert", "text": "Sverige bör kraftigt bygga ut förnybar energi som sol och vind.", "issue": "climate_energy", "positions": {"S": null, "M": null, "SD": -0.5, "V": 1, "C": 1, "KD": null, "MP": 1, "L": 0.5}}, {"id": "c_religious_school", "fmt": "choose", "text": "Religiösa friskolor bör …", "issue": "school_education", "options": [{"label": "få finnas kvar och behandlas som andra friskolor", "val": 1}, {"label": "tillåtas men med betydligt hårdare krav och granskning", "val": 0}, {"label": "avvecklas eller förbjudas", "val": -1}], "positions": {"S": -1, "M": null, "SD": null, "V": null, "C": null, "KD": null, "MP": null, "L": -1}}, {"id": "c_crime", "fmt": "choose", "text": "I kampen mot brott bör tyngdpunkten ligga på …", "issue": "crime_security", "options": [{"label": "hårdare straff och mer polis", "val": 1}, {"label": "lika delar straff och förebyggande", "val": 0}, {"label": "förebyggande arbete och sociala insatser", "val": -1}], "positions": {"S": 0, "M": 1, "SD": 1, "V": null, "C": 0, "KD": 0.5, "MP": -1, "L": 0.5}}, {"id": "c_energy", "fmt": "choose", "text": "Elproduktionen bör byggas ut främst med …", "issue": "climate_energy", "options": [{"label": "ny kärnkraft", "val": 1}, {"label": "både kärnkraft och förnybart", "val": 0}, {"label": "förnybart som sol och vind", "val": -1}], "positions": {"S": null, "M": 0.5, "SD": 0.5, "V": -1, "C": -1, "KD": null, "MP": -1, "L": 0.5}}, {"id": "c_climate", "fmt": "choose", "text": "Klimat kontra ekonomi – vad bör väga tyngst?", "issue": "climate_energy", "options": [{"label": "skärpta klimatmål, även om det kostar", "val": 1}, {"label": "en balans mellan klimat och ekonomi", "val": 0}, {"label": "jobb och låga kostnader främst", "val": -1}], "positions": {"S": 0, "M": 0, "SD": -1, "V": 1, "C": 0.5, "KD": 0, "MP": 1, "L": 0}}, {"id": "c_euro", "fmt": "choose", "text": "Sverige bör när det gäller euron …", "issue": "defense_security", "options": [{"label": "hålla folkomröstning och närma sig euron", "val": 1}, {"label": "inte ändra något nu", "val": 0}, {"label": "behålla kronan och stå utanför euron", "val": -1}], "positions": {"S": null, "M": null, "SD": -1, "V": -0.5, "C": null, "KD": null, "MP": null, "L": 1}}, {"id": "c_migration", "fmt": "choose", "text": "Migrationspolitiken bör framöver …", "issue": "migration_integration", "options": [{"label": "bli stramare", "val": 1}, {"label": "ligga kvar ungefär som idag", "val": 0}, {"label": "bli mer öppen och human", "val": -1}], "positions": {"S": 0.5, "M": 1, "SD": 1, "V": -1, "C": -0.5, "KD": null, "MP": -1, "L": 0.5}}, {"id": "c_welfare_private", "fmt": "choose", "text": "Privata vinstdrivna företag i vård, skola och omsorg bör …", "issue": "welfare_healthcare", "options": [{"label": "få större utrymme och fler valmöjligheter", "val": 1}, {"label": "vara kvar ungefär som idag", "val": 0}, {"label": "begränsas till förmån för offentlig regi", "val": -1}], "positions": {"S": -0.5, "M": null, "SD": null, "V": -1, "C": null, "KD": null, "MP": -0.5, "L": null}}, {"id": "c_taxes", "fmt": "choose", "text": "Skatterna i stort bör …", "issue": "economy_tax", "options": [{"label": "sänkas", "val": 1}, {"label": "ligga kvar på dagens nivå", "val": 0}, {"label": "höjas för att finansiera välfärden", "val": -1}], "positions": {"S": -0.5, "M": 1, "SD": 1, "V": -1, "C": 0.5, "KD": 1, "MP": null, "L": 1}}, {"id": "c_citizenship", "fmt": "choose", "text": "Kraven för medborgarskap och integration bör …", "issue": "migration_integration", "options": [{"label": "skärpas tydligt", "val": 1}, {"label": "vara ungefär som idag", "val": 0}, {"label": "lättas, med mer fokus på rättigheter", "val": -1}], "positions": {"S": 0.5, "M": 0.5, "SD": 1, "V": -1, "C": -0.5, "KD": 0.5, "MP": -0.5, "L": 0.5}}, {"id": "c_welfare_money", "fmt": "choose", "text": "Pengar till välfärden kontra lägre skatt – vad väljer du?", "issue": "economy_tax", "options": [{"label": "mer pengar till välfärden", "val": 1}, {"label": "en balans", "val": 0}, {"label": "lägre skatt framför nya satsningar", "val": -1}], "positions": {"S": 1, "M": -0.5, "SD": 0, "V": 1, "C": 0.5, "KD": 0, "MP": 1, "L": -0.5}}], "areas": [{"id": "welfare_healthcare", "label": "Välfärd, vård och omsorg", "desc": "Sjukvård, äldreomsorg, socialtjänst, statsbidrag och offentliga välfärdssystem.", "parties": {"S": {"prio": "hög", "weight": 2, "summary": "Vill korta vårdköer, stärka personalen och stoppa privatisering av akutsjukhus.", "proposals": ["Kortare vårdköer", "Fast läkare", "Stärkt psykiatri", "Stoppa privatisering av akutsjukhus", "Större statsbidrag till kommuner och regioner"]}, "M": {"prio": "medel", "weight": 1, "summary": "Handlingsprogrammet omfattar sjukvård; budgetprofilen fokuserar också på hushållsekonomi och välfärd.", "proposals": ["Sjukvårdsreformer", "Lägre skatt för personer med sjuk- och aktivitetsersättning"]}, "SD": {"prio": "hög", "weight": 2, "summary": "Vill stärka sjuk- och arbetslöshetsförsäkring, behålla närsjukhus och göra tandvård billigare.", "proposals": ["Billigare tandvård", "Starkt skydd vid sjukdom och arbetslöshet", "Behåll närsjukhusen", "Värdigt åldrande"]}, "V": {"prio": "mycket hög", "weight": 3, "summary": "Vill stärka offentligt finansierad välfärd, minska köer och ta tillbaka demokratisk kontroll från privata marknadsmodeller.", "proposals": ["5 miljarder kr till vården 2026", "1 miljard kr till vård på landsbygden", "Statlig finansiering för likvärdighet", "Avprivatisering/ta tillbaka kontroll", "Tillgänglig sjukvård"]}, "C": {"prio": "hög", "weight": 2, "summary": "Vill säkra välfärd nära människor, inklusive vård, skola och äldreomsorg i hela landet.", "proposals": ["Vård nära människor", "Specialistvård efter väntetid", "Satsningar på vård, äldreomsorg och skola på landsbygden", "Ungdomsmottagningar"]}, "KD": {"prio": "mycket hög", "weight": 3, "summary": "Vill samla ansvaret för sjukvården och avskaffa regionerna; vårdreformer finns i 2025/2026-rapporter.", "proposals": ["Ett samlat ansvar för sjukvården", "Avskaffa regionerna", "Nationell styrning av kompetensförsörjning, läkemedel, vaccinationer, screening, rättspsykiatri och ambulansflyg i första steg", "Reformagenda för framtidens vård"]}, "MP": {"prio": "mycket hög", "weight": 3, "summary": "Vill bryta ekonomiska klyftor och stärka vård, skola och omsorg.", "proposals": ["Höjt bostadsbidrag", "Höjt barnbidrag/studiehjälp", "Höjd CSN-bidragsdel", "Återställd ungtandvård och högkostnadsskydd för medicin", "Mer pengar till vård och skola"]}}}, {"id": "school_education", "label": "Skola och utbildning", "desc": "Grundskola, gymnasium, friskolor, lärarvillkor, studiero och kunskapskrav.", "parties": {"S": {"prio": "hög", "weight": 2, "summary": "Vill ha mindre klasser, mer likvärdig skola och begränsa vinstintressen.", "proposals": ["Små klasser", "Vinstförbud i skolan", "Åtgärder mot religiösa friskolor", "Över 4 miljarder kr till skola/förskola"]}, "M": {"prio": "hög", "weight": 2, "summary": "Skolan är ett av handlingsprogrammets huvudområden och partiets budgetprofil anger satsningar på skolan.", "proposals": ["Satsningar på skolan", "Kunskap och studiero", "Likvärdighet genom reformer"]}, "SD": {"prio": "hög", "weight": 2, "summary": "Fokuserar på ordning och reda i skolan och kunskapsfokus.", "proposals": ["Ordning och reda i skolan", "Trygg skolmiljö", "Kunskapslinje"]}, "V": {"prio": "hög", "weight": 2, "summary": "Vill sätta skolan före vinstintresse och stärka likvärdighet och personal.", "proposals": ["Skolan först", "Motverka vinstintressen", "Starkare personalvillkor", "Likvärdig utbildning"]}, "C": {"prio": "medel", "weight": 1, "summary": "Skolan ingår i målet att hela landet ska fungera; betonar likvärdig tillgång och stöd till elever.", "proposals": ["Skola i hela landet", "Stöd till elever med frånvaro", "Kompetensförsörjning"]}, "MP": {"prio": "hög", "weight": 2, "summary": "Vill stärka likvärdig skola, avskaffa marknadsskolan och stoppa vinstuttag.", "proposals": ["Avskaffa marknadsskolan", "Stoppa vinstuttag", "Stärkt likvärdighet", "Mer resurser till skolan"]}, "L": {"prio": "mycket hög", "weight": 3, "summary": "Liberalernas viktigaste fråga. Vill ha kunskapsskola, studiero, fler böcker, färre skärmar och statligt ansvar.", "proposals": ["Maxtak för antal elever per klass", "Mindre undervisningsgrupper med speciallärare", "Hjälpklasser för elever som återkommande stör", "Fler spetsklasser", "Riktiga läroböcker", "Mobilfri grundskola", "Fasa ut vinstintresset i friskolesektorn", "Förstatliga de kommunala skolorna", "Stärk lärarnas befogenheter och villkor"]}}}, {"id": "migration_integration", "label": "Migration och integration", "desc": "Asyl, invandring, utvisning, krav, språk, arbete och parallellsamhällen.", "parties": {"S": {"prio": "hög", "weight": 2, "summary": "Anger att den strama migrationspolitiken ligger fast; fokus på samhällsgemenskap och arbete.", "proposals": ["Stram migrationspolitik", "Aktivitetsplikt", "Jobbtrappa", "Krav och egen försörjning"]}, "M": {"prio": "hög", "weight": 2, "summary": "Migration och integration är ett av handlingsprogrammets tio huvudområden, med fokus på ordning, krav och integration.", "proposals": ["Stramare migrationslinje", "Kravbaserad integration", "Arbete och egen försörjning"]}, "SD": {"prio": "mycket hög", "weight": 3, "summary": "Vill ha strikt invandring, utvisning av personer utan rätt att vistas i landet och kriminalitet som grund för utvisning; integrationen ska bygga på krav.", "proposals": ["Strikt invandring", "Utvisa illegala och kriminella utlänningar", "Kravbaserad integration", "Skärpta bidragsregler", "Uppgradera medborgarskapet", "Stoppa tvångsblandning enligt partiets formulering"]}, "V": {"prio": "hög", "weight": 2, "summary": "Vill ha human migrations- och asylpolitik, antirasism och stark folkrätt.", "proposals": ["Human migration/asyl", "Antirasism", "Rättsstat", "Folkrätt", "Internationell solidaritet"]}, "C": {"prio": "medel", "weight": 1, "summary": "Vill stoppa det partiet beskriver som tonårs- och kompetensutvisningar och betonar arbetskraft/kompetens.", "proposals": ["Stoppa tonårsutvisningar", "Stoppa kompetensutvisningar", "Arbetslinje och integration"]}, "MP": {"prio": "medel", "weight": 1, "summary": "Handlingsprogrammet inkluderar human och rättssäker migration samt demokrati och mänskliga rättigheter.", "proposals": ["Human och rättssäker migration", "Demokrati och mänskliga rättigheter", "Stöd till internationell rätt"]}, "L": {"prio": "hög", "weight": 2, "summary": "Vill ha tydliga krav, jobb, svenska språket och mål om inga utsatta områden 2030.", "proposals": ["Inträdesjobb för unga och nyanlända", "Motprestation för bidrag", "Bekämpa parallellsamhällen", "Motverka hedersförtryck", "Förbud/avveckling av religiösa friskolor", "Inga offentliga medel till odemokratiska organisationer"]}}}, {"id": "climate_energy", "label": "Klimat, miljö och energi", "desc": "Klimatmål, energislag, elektrifiering, natur, biologisk mångfald och utsläppsminskningar.", "parties": {"S": {"prio": "medel", "weight": 1, "summary": "Grön industri och elprisskydd ingår, men klimat är inte en av de tre huvudrubrikerna i valplattformen.", "proposals": ["Gröna krediter", "Industriklivet", "Skydd mot höga elpriser"]}, "M": {"prio": "medel", "weight": 1, "summary": "Partiet betonar fossilfri el, konkurrenskraft och klimatpolitik i kombination med tillväxt.", "proposals": ["Energipolitik inom handlingsprogrammet", "Elskattesänkning för hushåll", "Konkurrenskraft och stabil elförsörjning"]}, "V": {"prio": "mycket hög", "weight": 3, "summary": "Vill genomföra en rättvis grön omställning med stora investeringar i järnväg, kollektivtrafik, elnät, förnybar el och klimatarbete.", "proposals": ["Järnväg och transportinfrastruktur", "Elnät och lokal förnybar el", "Havsbaserad vindkraft", "Klimatklivet", "Sverigebiljett", "Fossilfri industri"]}, "C": {"prio": "mycket hög", "weight": 3, "summary": "Vill sänka utsläppen samtidigt som ekonomin växer; prioriterar elektrifiering, miljöbilar, vindkraft och gröna investeringar.", "proposals": ["Nå klimatmålen", "Miljöleasing", "Miljöbilspremie för begagnad bil", "Ellastbilar och laddinfrastruktur", "Fastighetsskatt på vindkraft tillbaka till kommuner", "Kablar till havsbaserad vindkraft"]}, "KD": {"prio": "medel", "weight": 1, "summary": "Har klimat- och havsmiljöprogram i policyunderlag; budgetprofilen betonar också elpriser.", "proposals": ["Ny politik för klimat och havsmiljö", "Sänkt elskatt", "Högkostnadsskydd el"]}, "MP": {"prio": "mycket hög", "weight": 3, "summary": "Valets viktigaste fråga enligt partiet; vill genomföra snabb och rättvis omställning med förnybar energi, klimatfond och gröna investeringar.", "proposals": ["Skärpt klimatmål", "Koldioxidbudget", "Mål för konsumtionsutsläpp", "Klimatfond", "Statlig grön investeringsbank", "Förnybar energi", "Gröna industrisatsningar", "Energieffektivisering"]}, "L": {"prio": "hög", "weight": 2, "summary": "Vill nå klimatmålen genom fossilfri energi, kärnkraft, CCS, innovation, entreprenörskap och frihandel.", "proposals": ["Finansiering av ny kärnkraft", "Sol, vind och kärnkraft", "10 miljoner ton infångad CO2 2030 och 20 miljoner ton 2035", "Klimatklivet och Industriklivet", "Elektrifiering av transporter", "Havsbaserad vindkraft"]}}}, {"id": "jobs_business", "label": "Jobb, företagande och tillväxt", "desc": "Arbetsmarknad, företag, sysselsättning, industri och konkurrenskraft.", "parties": {"S": {"prio": "hög", "weight": 2, "summary": "Vill ha en tillväxtplan och aktiv närings-/industripolitik för fler jobb.", "proposals": ["Tillväxtpakt", "Jobbsatsningar", "Aktivitetsplikt", "Jobbtrappa", "Bostads- och infrastruktursatsningar", "Gröna krediter", "Industriklivet", "Export- och industrifrämjande", "Skydd mot sjuklönekostnader för småföretag"]}, "M": {"prio": "hög", "weight": 2, "summary": "Arbetslinjen är central; politiken ska göra det mer lönsamt att arbeta och enklare att driva företag.", "proposals": ["Lägre skatt på arbete", "Fokus på jobb och företag i handlingsprogrammet", "Regelförenklingar och tillväxtpolitik"]}, "V": {"prio": "hög", "weight": 2, "summary": "Vill skapa jobb genom klimatinvesteringar och stärka löntagarnas trygghet.", "proposals": ["Arbetstidsförkortning med bibehållen lön", "Bättre arbetsmiljö", "Klimatjobb", "Höjda pensioner"]}, "C": {"prio": "mycket hög", "weight": 3, "summary": "Vill bryta arbetslösheten och få fler i arbete genom sänkta kostnader att anställa och bättre villkor för småföretag.", "proposals": ["Sänkta arbetsgivaravgifter för småföretag", "Lättnader för unga och långtidsarbetslösa", "150 000 fler i arbete", "Förenklingar för företag"]}, "KD": {"prio": "hög", "weight": 2, "summary": "Vill stärka småföretagande, byggande och industriell utveckling.", "proposals": ["Ny politik för att stärka småföretagandet", "Färre byråkratiska hinder", "Snabbspår för samhällsbyggande", "Starkare villkor för lantbruk/företag"]}, "L": {"prio": "hög", "weight": 2, "summary": "Vill minska regelkrångel och göra det billigare att anställa.", "proposals": ["Utvidgat växa-stöd", "Sänkt arbetsgivaravgift för unga", "Förbättrade 3:12-regler", "Egenmakt och entreprenörskap 2026"]}}}, {"id": "crime_security", "label": "Kriminalitet, polis och trygghet", "desc": "Brottsbekämpning, prevention, straff, polis, gängkriminalitet och våld i nära relationer.", "parties": {"S": {"prio": "hög", "weight": 2, "summary": "Kombinerar hårdare tag mot gäng med socialt förebyggande arbete.", "proposals": ["Maffialag", "Riskfamiljsprogram", "Mer resurser till kriminalvård", "Stärkt brottsofferstöd och kvinnojourer", "Förbud mot aktivklubbar"]}, "M": {"prio": "hög", "weight": 2, "summary": "Vill att brott ska straffas och att rättsväsendet och förebyggande arbete förstärks.", "proposals": ["Satsningar på rättsväsendet", "Förebyggande insatser", "Tuffare kriminalpolitik som del av moderat profil"]}, "SD": {"prio": "mycket hög", "weight": 3, "summary": "Kärnfråga i valplattformens inriktning: hårdare tag mot gäng, sexualbrott och brottslighet samt mer närvarande polis.", "proposals": ["Jakt på gängen", "Stopp för pedofiler", "Närvarande polis", "Stark kriminalpolitik", "Starkt totalförsvar"]}, "C": {"prio": "medel", "weight": 1, "summary": "Vill ha synlig polis och trygghet i hela landet.", "proposals": ["Synlig polis i alla kommuner", "Trygghet i hela landet", "Stärkt civilsamhälle"]}, "KD": {"prio": "hög", "weight": 2, "summary": "Vill stärka trygghet, motverka islamism och betonar samhällsgemenskap.", "proposals": ["Handlingsplan mot islamism", "Tryggare gator", "Burqa- och niqabförbud i offentliga miljöer enligt partiledartal", "Samhällsgemenskapsrapport"]}, "L": {"prio": "hög", "weight": 2, "summary": "Vill fortsätta trycka tillbaka gängkriminaliteten och stärka trygghet i vardagen.", "proposals": ["Fokus på gängkriminalitet", "Friheten ska kännas när man låser dörren", "Fotboja som huvudregel vid kontaktförbud enligt relaterad 2026-nyhet"]}}}, {"id": "economy_tax", "label": "Ekonomi, skatt och hushåll", "desc": "Skattepolitik, bidrag, vardagskostnader, hushållsekonomi och finansiering.", "parties": {"S": {"prio": "hög", "weight": 2, "summary": "Stärka hushållens ekonomi och sätta vanligt folk först; kritiserar stora skattesänkningar för höginkomsttagare.", "proposals": ["Höjt barnbidrag och studiebidrag", "Höjt bostadsbidrag", "Billigare mediciner", "Avgiftsfri tandvård för unga", "Press på banker och matkedjor", "Skydd mot höga elpriser", "Höjda pensioner/insatser för pensionärer"]}, "M": {"prio": "hög", "weight": 2, "summary": "Vill stärka hushållens köpkraft genom lägre skatt på arbete och pension samt sänkta vardagskostnader.", "proposals": ["Jobbskatteavdrag", "Lägre pensionärsskatt", "Tillfälligt halverad matmoms", "Lägre elskatt", "Lägre förskoleavgifter", "Stärkt bostadsbidrag"]}, "SD": {"prio": "hög", "weight": 2, "summary": "Vill ha lägre skatter och värna privat ägande/sparande; motsätter sig regleringar som partiet ser som frihetsinskränkande.", "proposals": ["Skattefri grundnivå på ISK 300 000 kr", "Lägre skatter", "Stärkt äganderätt", "Oberoende valuta", "Kontanter ska finnas kvar"]}, "V": {"prio": "mycket hög", "weight": 3, "summary": "Vill omfördela från höga inkomster, kapital och banker till välfärd och hushåll med små marginaler.", "proposals": ["Höjt barnbidrag", "Högkostnadsskydd/bostadsstöd", "Likvärdig beskattning för sjukskrivna, föräldralediga och arbetslösa", "Högre skatt på höga inkomster och förmögenheter"]}, "L": {"prio": "hög", "weight": 2, "summary": "Vill sänka inkomstskatter och vardagskostnader samt stärka sparande.", "proposals": ["Sänkt skatt på arbete och pension", "Sänkt elskatt", "Tillfälligt sänkt matmoms", "ISK-grundavdrag 300 000 kr", "Höjt bostadsbidrag", "Slopad funkisskatt"]}}}, {"id": "defense_security", "label": "Försvar, säkerhet och beredskap", "desc": "Totalförsvar, civilt försvar, Nato/EU, krisberedskap och internationell säkerhet.", "parties": {"S": {"prio": "hög", "weight": 2, "summary": "Vill stärka totalförsvaret och samhällsberedskapen.", "proposals": ["Stärkt totalförsvar", "Samhällsgemenskap", "Skydd av public service och föreningsliv som del av demokratisk robusthet"]}, "M": {"prio": "hög", "weight": 2, "summary": "Försvar och internationell säkerhet ingår som ett av handlingsprogrammets tio politikområden och förstärks i budgetprofilen.", "proposals": ["Stärkt försvar", "Civil beredskap", "Internationell säkerhet"]}, "SD": {"prio": "hög", "weight": 2, "summary": "Vill ha starkt totalförsvar och nationell motståndskraft.", "proposals": ["Starkt totalförsvar", "Nationell säkerhet", "Samhällsberedskap"]}, "L": {"prio": "hög", "weight": 2, "summary": "Vill ha folkomröstning om euron och stärka public service; EU och internationell liberalism är centrala.", "proposals": ["Folkomröstning om euron", "Stärka public service", "EU-samarbete", "Frihet och internationalism"]}}}, {"id": "democracy_culture", "label": "Demokrati, kultur och civilsamhälle", "desc": "Public service, rättsstat, kultur, föreningsliv, folkbildning och mänskliga rättigheter.", "parties": {"SD": {"prio": "mycket hög", "weight": 3, "summary": "Vill stärka svensk identitet, språk och kultur samt motverka islamism och det partiet beskriver som svenskfientlighet.", "proposals": ["Stärk svenska språket", "Anti-islamism", "Premiera svenska produkter", "Motverka svenskfientlighet", "Stärk medborgarskapets betydelse"]}, "V": {"prio": "medel", "weight": 1, "summary": "Vill stärka kultur och folkbildning som demokratisk infrastruktur.", "proposals": ["Kultur", "Folkbildning", "Demokratisk organisering"]}, "C": {"prio": "hög", "weight": 2, "summary": "Valplanen betonar liberaldemokratiska värden och att hålla ytterkantspartier från regeringsinflytande.", "proposals": ["Liberal demokrati", "Frihet och ansvar", "Äganderätt", "Lokal självbestämmanderätt"]}, "MP": {"prio": "hög", "weight": 2, "summary": "Vill stärka förebyggande arbete mot kriminalitet, demokrati, kultur och civilsamhälle.", "proposals": ["Förebyggande arbete mot kriminalitet", "Återstartsbudget för kulturen", "Ny filmfond", "1 miljard kr till civilsamhället", "Bekämpa mäns våld mot kvinnor"]}}}, {"id": "transport_infrastructure", "label": "Transporter och infrastruktur", "desc": "Kollektivtrafik, järnväg, väg, drivmedel, elbilar och regional tillgänglighet.", "parties": {"SD": {"prio": "hög", "weight": 2, "summary": "Vill hålla nere drivmedelspriser och motsätter sig klimatstyrning som höjer kostnader för hushåll på landsbygd.", "proposals": ["Fortsatt låga drivmedelspriser", "Låg reduktionsplikt", "Energipolitik med fokus på pris och försörjning"]}, "MP": {"prio": "hög", "weight": 2, "summary": "Vill göra kollektivtrafik och elbilar billigare och mer tillgängliga.", "proposals": ["Sverigekort för 499 kr/månad", "Nationell elbilsoffensiv", "Fungerande tåg i hela landet", "Elektrifiering av transportsektorn"]}, "L": {"prio": "medel", "weight": 1, "summary": "Vill återupprätta stabil och pålitlig infrastruktur med stora satsningar på väg och järnvägsunderhåll.", "proposals": ["Historiska infrastruktursatsningar enligt budgetprofilen", "Underhåll av vägar och järnvägar"]}}}, {"id": "rural_housing", "label": "Landsbygd, bostäder och regional utveckling", "desc": "Hela landet, lokal service, bostadsmarknad, byggande och regionala klyftor.", "parties": {"V": {"prio": "medel", "weight": 1, "summary": "Vill att staten tar större ansvar för bostadsbyggande och att naturresurser förädlas lokalt.", "proposals": ["Statligt bostadsansvar", "Lokal förädling av naturresurser", "Rättvis utveckling i hela landet"]}, "C": {"prio": "mycket hög", "weight": 3, "summary": "Vill minska geografiska klyftor och satsa på service, infrastruktur, skola, vård och äldreomsorg i hela landet.", "proposals": ["50 miljarder kr till landsbygds-Sverige nästa mandatperiod", "Vägar, järnväg och samhällsservice", "Väg- och gatubelysning", "Lokal självbestämmanderätt"]}, "KD": {"prio": "hög", "weight": 2, "summary": "Vill stegvis avskaffa flyttskatten och underlätta rörlighet på bostadsmarknaden.", "proposals": ["Ta bort uppskovstaket", "Trappa ned reavinstskatten vid längre innehav till 0 procent", "Samhällsbyggarrapport"]}}}, {"id": "family_social", "label": "Familj, äldre, barn och social trygghet", "desc": "Familjepolitik, barn, pensioner, äldreomsorg, LSS och socialförsäkringar.", "parties": {"KD": {"prio": "mycket hög", "weight": 3, "summary": "Vill sänka vardagskostnader och stärka familjers ekonomi.", "proposals": ["Sänkt matmoms", "Sänkt elskatt", "Högkostnadsskydd mot elpriser", "Sänkta förskole-/fritidsavgifter", "Höjt bostadsbidrag", "Lägre skatt för arbete och pension"]}, "L": {"prio": "medel", "weight": 1, "summary": "Har 2026-rapporter om vårdens tillgänglighet och psykisk hälsa; kampanjen nämner LSS som frihetsreform.", "proposals": ["Byggstenar för framtidens vård: ökad tillgänglighet", "Byggstenar för stärkt psykisk hälsa", "Värna LSS"]}}}]};
+const app = document.getElementById('app');
+
+// ---------- helpers ----------
+const $ = (h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild;};
+const esc = (s)=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+// session-seeded shuffle so statement order varies per visit
+let SEED = (performance.now()*1000|0) ^ (window.history.length*7919) ^ (screen.width*31);
+function rnd(){SEED=(SEED*1103515245+12345)&0x7fffffff;return SEED/0x7fffffff;}
+function shuf(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(rnd()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+const QUESTIONS = DATA.questions;
+const LIKERT_POOL = QUESTIONS.filter(q=>q.fmt==='likert');
+const CHOOSE_POOL = QUESTIONS.filter(q=>q.fmt==='choose');
+const AREAS = DATA.areas;
+const PARTIES = DATA.parties;
+const ORDER = DATA.party_order;
+const FULL = DATA.party_full;
+const ROUND_LIKERT = Math.min(10, LIKERT_POOL.length);
+const ROUND_CHOOSE = Math.min(5, CHOOSE_POOL.length);
+
+// state. answers[qid] = {u:-1..1, imp:bool}  (samma skala för båda format)
+const state = { qs:[], i:0, answers:{}, prio:{} };
+function sampleRound(){
+  // lotta fram en omgång: påståenden först (steg 1), välj-alternativ sedan (steg 2)
+  state.qs = shuf(LIKERT_POOL).slice(0,ROUND_LIKERT).concat(shuf(CHOOSE_POOL).slice(0,ROUND_CHOOSE));
+  state.i=0; state.answers={}; state.prio={};
+}
+
+// ---------- SCREENS ----------
+function start(){
+  app.innerHTML='';
+  const s=$(`<div class="screen"></div>`);
+  s.innerHTML=`
+    <div style="text-align:center; margin:18px 0 22px">
+      <span class="tag">Anonym · neutral · källbaserad</span>
+    </div>
+    <div class="card stack">
+      <h1>Vilket parti delar dina värderingar?</h1>
+      <p class="lead">En valkompass byggd för att hitta <b>ditt</b> parti – inte för att putta dig mot något. Inga partinamn, färger eller logotyper syns medan du svarar. Du ser resultatet först på slutet.</p>
+      <p style="font-size:14px;margin-top:-4px">Varje omgång lottar fram <b>${ROUND_LIKERT+ROUND_CHOOSE} frågor</b> ur en bank på ${QUESTIONS.length} – först påståenden, sedan välj‑alternativ där du avslutar meningen, och till sist budgetspelet. Kör om för nya frågor.</p>
+      <button class="btn" id="go">Starta &nbsp;→</button>
+      <div style="text-align:center"><button class="linkbtn" id="how">Hur räknas det ut?</button></div>
+    </div>
+    <ul class="fair">
+      <li><span class="ic">⬚</span><span><b>Helt anonymt.</b> Partierna är dolda tills du är klar – du kan inte vinklas.</span></li>
+      <li><span class="ic">=</span><span><b>Inget straffas på okänt.</b> Saknar ett parti tydlig position i källan räknas frågan varken för eller emot det.</span></li>
+      <li><span class="ic">⤬</span><span><b>Slumpad ordning, neutralt språk.</b> Ingen fråga är ställd för att leda dig.</span></li>
+      <li><span class="ic">◷</span><span><b>Källbaserat.</b> Allt bygger på partiernas eget publicerade 2026-material.</span></li>
+    </ul>
+    <p class="foot">Underlag: ${esc(DATA.meta.title)} · hämtat ${esc(DATA.meta.retrieved)}</p>`;
+  app.appendChild(s);
+  s.querySelector('#go').onclick=()=>{sampleRound();ask();};
+  s.querySelector('#how').onclick=()=>methodScreen();
+}
+
+function topbar(stepFrac,label){
+  return `<div class="topbar">
+    <div class="crumbs">
+      <div class="crumb"><i style="width:${Math.min(100,stepFrac[0]*100)}%"></i></div>
+      <div class="crumb"><i style="width:${Math.min(100,stepFrac[1]*100)}%"></i></div>
+      <div class="crumb"><i style="width:${Math.min(100,stepFrac[2]*100)}%"></i></div>
+    </div>
+    <div class="stepmeta">${label}</div>
+  </div>`;
+}
+
+const LIKERT_OPTS=[
+  {u:1,   t:'Instämmer helt'},
+  {u:0.5, t:'Instämmer delvis'},
+  {u:0,   t:'Neutral / vet ej'},
+  {u:-0.5,t:'Tar delvis avstånd'},
+  {u:-1,  t:'Tar helt avstånd'},
+];
+const STAR=`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.5 1.3 6.6L12 17.9 6.1 21l1.3-6.6L2.5 9.9l6.6-.8z"/></svg>`;
+
+// gemensam fot (extra viktigt + tillbaka) och hoppa-över
+function qFoot(q){
+  const cur=state.answers[q.id];
+  return `<div class="qfoot">
+      <button class="star ${cur&&cur.imp?'on':''}" id="imp">${STAR} Extra viktigt för mig</button>
+      ${state.i>0?`<button class="linkbtn" id="back">← Tillbaka</button>`:`<span></span>`}
+    </div>`;
+}
+function wireFoot(s,q,advance){
+  const imp=s.querySelector('#imp');
+  imp.onclick=()=>{const c=state.answers[q.id]||{u:0,imp:false};c.imp=!c.imp;state.answers[q.id]=c;imp.classList.toggle('on',c.imp);};
+  const bk=s.querySelector('#back'); if(bk) bk.onclick=()=>{state.i--;ask();};
+  s.querySelector('#skip').onclick=()=>{if(!state.answers[q.id])state.answers[q.id]={u:0,imp:false};state.i++;ask();};
+}
+function commit(q,u,el,all){
+  const imp=(state.answers[q.id]&&state.answers[q.id].imp)||false;
+  state.answers[q.id]={u,imp};
+  all.forEach(x=>x.classList.toggle('sel',x===el));
+  setTimeout(()=>{state.i++;ask();},170);
+}
+
+function ask(){
+  if(state.i>=state.qs.length) return priorities();
+  const q=state.qs[state.i];
+  const inChoose=state.i>=ROUND_LIKERT;
+  const stepLabel=inChoose
+    ? `Välj alternativ ${state.i-ROUND_LIKERT+1} / ${ROUND_CHOOSE}`
+    : `Påstående ${state.i+1} / ${ROUND_LIKERT}`;
+  const frac=[Math.min(state.i,ROUND_LIKERT)/ROUND_LIKERT, Math.max(0,state.i-ROUND_LIKERT)/ROUND_CHOOSE, 0];
+  app.innerHTML='';
+  const s=$(`<div class="screen"></div>`);
+  if(q.fmt==='likert'){
+    const cur=state.answers[q.id];
+    s.innerHTML=`
+      ${topbar(frac,stepLabel)}
+      <div class="card">
+        <div class="qtag">Steg 1 · Påstående</div>
+        <div class="qtext">${esc(q.text)}</div>
+        <div class="likert">
+          ${LIKERT_OPTS.map(l=>`<button class="lk ${cur&&cur.u===l.u?'sel':''}" data-u="${l.u}"><span class="dot"></span>${l.t}</button>`).join('')}
+        </div>
+        ${qFoot(q)}
+      </div>
+      <div style="text-align:center;margin-top:16px"><button class="linkbtn" id="skip">Hoppa över →</button></div>`;
+    app.appendChild(s);
+    const all=[...s.querySelectorAll('.lk')];
+    all.forEach(b=>b.onclick=()=>commit(q,+b.dataset.u,b,all));
+  }else{
+    const cur=state.answers[q.id];
+    s.innerHTML=`
+      ${topbar(frac,stepLabel)}
+      <div class="card">
+        <div class="qtag">Steg 2 · Välj det som passar dig bäst</div>
+        <div class="qtext">${esc(q.text)}</div>
+        <div class="likert">
+          ${q.options.map((o,k)=>`<button class="lk opt ${cur&&cur.u===o.val?'sel':''}" data-u="${o.val}"><span class="dot"></span>${esc(o.label)}</button>`).join('')}
+        </div>
+        ${qFoot(q)}
+      </div>
+      <div style="text-align:center;margin-top:16px"><button class="linkbtn" id="skip">Ingen åsikt / hoppa över →</button></div>`;
+    app.appendChild(s);
+    const all=[...s.querySelectorAll('.lk')];
+    all.forEach(b=>b.onclick=()=>commit(q,+b.dataset.u,b,all));
+  }
+  wireFoot(s,q);
+}
+
+const BUDGET=20;            // fasta budgetpoäng att fördela
+const MAXLVL=3;             // max per område
+const LVLNAME=['Inte prioriterat','Lite','Mycket','Mest'];
+function priorities(){
+  app.innerHTML='';
+  const s=$(`<div class="screen"></div>`);
+  s.innerHTML=`
+    ${topbar([1,1,0],'Budgetspelet')}
+    <div class="card stack" style="margin-bottom:16px">
+      <h2>💰 Du är finansminister</h2>
+      <p>Du har <b>${BUDGET} budgetpoäng</b> att fördela – och inte en poäng mer. Lägg dem på det som betyder mest för dig. Vill du satsa mer på ett område måste du <b>dra ner på ett annat</b>. Det du lämnar på noll räknas inte.</p>
+    </div>
+    <div id="areas"></div>
+    <div class="budgetbar">
+      <div class="fill"><i id="bfill"></i></div>
+      <small id="bnote"></small>
+    </div>
+    <div style="margin-top:16px"><button class="btn" id="result" disabled>Visa min matchning &nbsp;→</button></div>
+    <div style="text-align:center;margin-top:12px"><button class="linkbtn" id="back2">← Tillbaka till frågorna</button></div>`;
+  app.appendChild(s);
+  const host=s.querySelector('#areas');
+  const used=()=>AREAS.reduce((sum,a)=>sum+(state.prio[a.id]||0),0);
+  const rows=[];
+  AREAS.forEach(a=>{
+    const el=$(`<div class="area">
+      <h3>${esc(a.label)}</h3>
+      <p>${esc(a.desc||'')}</p>
+      <div class="step">
+        <button class="pm minus" aria-label="Minska">−</button>
+        <div class="val">
+          <span class="coins">${Array.from({length:MAXLVL},(_,i)=>`<i data-i="${i}"></i>`).join('')}</span>
+          <span class="lvl"></span>
+        </div>
+        <button class="pm plus" aria-label="Öka">+</button>
+      </div>
+    </div>`);
+    const minus=el.querySelector('.minus'), plus=el.querySelector('.plus');
+    minus.onclick=()=>{const c=state.prio[a.id]||0; if(c>0){state.prio[a.id]=c-1; refresh();}};
+    plus.onclick =()=>{const c=state.prio[a.id]||0; if(c<MAXLVL && used()<BUDGET){state.prio[a.id]=c+1; refresh();}};
+    host.appendChild(el);
+    rows.push({a,el,minus,plus});
+  });
+  function refresh(){
+    const u=used(), remaining=BUDGET-u, full=remaining<=0;
+    rows.forEach(({a,el,minus,plus})=>{
+      const c=state.prio[a.id]||0;
+      el.classList.toggle('funded',c>0);
+      el.querySelectorAll('.coins i').forEach(d=>d.classList.toggle('f',(+d.dataset.i)<c));
+      el.querySelector('.lvl').textContent=LVLNAME[c];
+      minus.disabled=c<=0;
+      plus.disabled=c>=MAXLVL || full;
+    });
+    s.querySelector('#bfill').style.width=(100*u/BUDGET)+'%';
+    s.querySelector('.budgetbar').classList.toggle('empty',full);
+    s.querySelector('#bnote').innerHTML= full
+      ? `<b>0</b> poäng kvar · budgeten är fördelad`
+      : `<b>${remaining}</b> av ${BUDGET} poäng kvar`;
+    s.querySelector('#result').disabled = u===0;
+  }
+  refresh();
+  s.querySelector('#result').onclick=()=>results();
+  s.querySelector('#back2').onclick=()=>{state.i=state.qs.length-1;ask();};
+}
+
+// ---------- SCORING ----------
+// läsbar mening för resultatlistan; för välj-alternativ visas partiets ståndpunkt
+function readable(q,p){
+  if(q.fmt==='likert') return q.text;
+  let best=q.options[0];
+  q.options.forEach(o=>{ if(Math.abs(o.val-p)<Math.abs(best.val-p)) best=o; });
+  const lbl=best.label;
+  return q.text.includes('…') ? q.text.replace('…', lbl) : q.text+' → '+lbl;
+}
+function computeStatement(pid){
+  let wsum=0, asum=0, cov=0, agree=[], disagree=[], mid=[];
+  state.qs.forEach(q=>{
+    const ans=state.answers[q.id];
+    const p=q.positions[pid];
+    if(!ans||ans.u===0) return;          // user neutral/skip -> ignore
+    if(p===null||p===undefined) return;  // party unknown -> excluded (no penalty)
+    cov++;
+    const ag=1-Math.abs(ans.u-p)/2;      // 0..1
+    const w=ans.imp?2:1;
+    wsum+=w; asum+=ag*w;
+    const rec={text:readable(q,p), ag};
+    if(ag>=0.75) agree.push(rec); else if(ag<=0.25) disagree.push(rec); else mid.push(rec);
+  });
+  return {score: wsum? asum/wsum : null, cov, agree, disagree, mid};
+}
+function computePriority(pid){
+  let dot=0, nu=0, np=0; const shared=[];
+  AREAS.forEach(a=>{
+    const u=state.prio[a.id]||0;
+    const pe=a.parties[pid]? a.parties[pid].weight : 0;
+    dot+=u*pe; nu+=u*u; np+=pe*pe;
+    if(u>0 && pe>0) shared.push({label:a.label, u, pe, summary:a.parties[pid]?a.parties[pid].summary:''});
+  });
+  const score = (nu>0 && np>0)? dot/(Math.sqrt(nu)*Math.sqrt(np)) : null;
+  shared.sort((x,y)=>(y.u*y.pe)-(x.u*x.pe));
+  return {score, shared};
+}
+
+function results(){
+  const anyStmt=Object.values(state.answers).some(a=>a.v!==0);
+  const anyPrio=Object.values(state.prio).some(v=>v>0);
+  const rows=ORDER.map(pid=>{
+    const s1=computeStatement(pid);
+    const s2=computePriority(pid);
+    let parts=[], weights=[];
+    if(s1.score!==null){parts.push(s1.score);weights.push(0.5*Math.min(1,s1.cov/4)+0.2);} // confidence scales with coverage
+    if(s2.score!==null){parts.push(s2.score);weights.push(0.5);}
+    let overall=null;
+    if(parts.length){let ws=weights.reduce((a,b)=>a+b,0);overall=parts.reduce((a,p,i)=>a+p*weights[i],0)/ws;}
+    return {pid, s1, s2, overall};
+  }).filter(r=>r.overall!==null)
+    .sort((a,b)=>b.overall-a.overall);
+
+  app.innerHTML='';
+  const s=$(`<div class="screen"></div>`);
+  s.innerHTML=`
+    ${topbar([1,1,1],'Ditt resultat')}
+    <div class="card stack" style="margin-bottom:6px">
+      <span class="tag">Klart!</span>
+      <h1>Så ligger du till</h1>
+      <p>Listan visar hur väl partiernas publicerade 2026-material stämmer med dina svar. <b>Det är en samstämmighet – inte en rekommendation.</b> Tryck på ett parti för att se exakt varför.</p>
+    </div>
+    <div class="res" id="res"></div>
+    <p class="disclaim" id="disc"></p>
+    <details class="method"><summary>Hur räknades detta ut? <span>▾</span></summary>
+      <div class="body" id="mbody"></div></details>
+    <div style="margin-top:18px"><button class="btn ghost" id="redo">↺ Gör om testet</button></div>
+    <p class="foot">Underlag: ${esc(DATA.meta.title)} · ${esc(DATA.meta.retrieved)}</p>`;
+  app.appendChild(s);
+
+  const host=s.querySelector('#res');
+  rows.forEach((r,i)=>{
+    const pct=Math.round(r.overall*100);
+    const card=$(`<div class="pcard ${i===0?'top':''}">
+      <button class="phead">
+        <span class="chip">${esc(r.pid)}</span>
+        <span class="pmain">
+          <span class="pname">${esc(FULL[r.pid]||r.pid)} ${i===0?'<span class="rank">Närmast dig</span>':''}</span>
+          <span class="pbar"><i style="width:0%"></i></span>
+        </span>
+        <span class="pct">${pct}%</span>
+        <span class="chev"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></span>
+      </button>
+      <div class="pdetail"></div>
+    </div>`);
+    host.appendChild(card);
+    setTimeout(()=>{card.querySelector('.pbar i').style.width=pct+'%';},60+i*40);
+    const det=card.querySelector('.pdetail');
+    det.innerHTML=detailHTML(r);
+    card.querySelector('.phead').onclick=()=>{
+      const open=card.classList.contains('open');
+      host.querySelectorAll('.pcard').forEach(c=>c.classList.remove('open'));
+      if(!open) card.classList.add('open');
+    };
+  });
+
+  // disclaimer about excluded parties / coverage
+  const excluded=ORDER.length-rows.length;
+  s.querySelector('#disc').innerHTML=
+    `Matchningen bygger på de frågor och områden där varje parti har en tydlig position i källan. `+
+    (excluded>0?`${excluded} parti(er) hade för lite underlag mot dina svar för att rankas. `:``)+
+    `Källan är en ögonblicksbild och inte en fullständig redovisning av all politik.`;
+
+  s.querySelector('#mbody').innerHTML=methodHTML();
+  s.querySelector('#redo').onclick=()=>{ start(); window.scrollTo(0,0); };
+  window.scrollTo(0,0);
+}
+
+function detailHTML(r){
+  const a=r.s1, p=r.s2;
+  let h='';
+  h+=`<h4>Sakfrågor</h4>`;
+  if(a.score===null){h+=`<div class="cov">Partiet hade ingen tydlig position i källan på de frågor du tog ställning till.</div>`;}
+  else{
+    h+=`<div class="cov">Samstämmighet ${Math.round(a.score*100)}% · baserat på ${a.cov} fråg${a.cov===1?'a':'or'} där partiet har en tydlig position.</div>`;
+    a.agree.slice(0,6).forEach(x=>h+=`<div class="stmtline"><span class="m agree">✓</span><span>${esc(x.text)}</span></div>`);
+    a.disagree.slice(0,6).forEach(x=>h+=`<div class="stmtline"><span class="m disagree">✕</span><span>${esc(x.text)}</span></div>`);
+    a.mid.slice(0,3).forEach(x=>h+=`<div class="stmtline"><span class="m mid">~</span><span>${esc(x.text)}</span></div>`);
+  }
+  h+=`<h4>Gemensamma prioriteringar</h4>`;
+  if(!p.shared.length){h+=`<div class="cov">Inga av dina prioriterade områden låg bland partiets tyngsta i 2026-materialet.</div>`;}
+  else{
+    h+=`<div class="taglist">`+p.shared.slice(0,8).map(x=>`<span class="mini">${esc(x.label)}</span>`).join('')+`</div>`;
+    const topShared=p.shared[0];
+    if(topShared&&topShared.summary) h+=`<div class="cov" style="margin-top:8px">”${esc(topShared.summary)}”</div>`;
+  }
+  // sources
+  const party=PARTIES.find(x=>x.id===r.pid);
+  if(party&&party.sources&&party.sources.length){
+    h+=`<h4>Källor</h4><div class="src">`+
+      party.sources.filter(s=>s.url).slice(0,3).map(s=>`<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title||s.url)} ↗</a>`).join('')+`</div>`;
+  }
+  return h;
+}
+
+function methodHTML(){
+  return `
+  <p><b>Slumpat urval.</b> Varje omgång lottar fram ${ROUND_LIKERT} påståenden och ${ROUND_CHOOSE} välj-alternativ ur en bank på ${QUESTIONS.length} frågor. Kör du om får du nya frågor – men matchningen bygger på samma metod.</p>
+  <p><b>Två likväga delar.</b> Dina svar jämförs med partiernas eget publicerade 2026-material på två sätt:</p>
+  <p>1. <b>Frågor.</b> För varje fråga du svarat på mäts hur nära ditt svar ligger partiets position. “Extra viktigt” väger dubbelt. Frågor där partiet saknar tydlig position i källan räknas <b>inte alls</b> – varken för eller emot.</p>
+  <p>2. <b>Prioriteringar.</b> Du fördelar en <b>fast budget</b> – mer på ett område kräver mindre på ett annat. Din fördelning jämförs med vilka områden partiet faktiskt lyfte tyngst i sitt 2026-material (mycket hög / hög / medel prioritet) via riktningslikhet.</p>
+  <p><b>Hur positionerna är satta:</b> varje partis ståndpunkt är kodad direkt ur formuleringar i partiets eget material – inte ur tyckande. Där materialet är tyst lämnas positionen blank och påverkar inte matchningen.</p>
+  <p><b>Neutralitet:</b> frågorna visas i slumpad ordning, med neutralt språk, och alla partier presenteras likadant i gråskala – medvetet utan blockfärger. Procenten är ett mått på överensstämmelse, inte ett betyg eller en rekommendation.</p>
+  <p><b>Begränsning:</b> ${esc(DATA.meta.limitations[0])}</p>`;
+}
+
+function methodScreen(){
+  app.innerHTML='';
+  const s=$(`<div class="screen"></div>`);
+  s.innerHTML=`
+    <div class="card stack">
+      <span class="tag">Metod & neutralitet</span>
+      <h1>Hur räknas det ut?</h1>
+      <div style="color:var(--muted)">${methodHTML()}</div>
+      <button class="btn" id="b">← Tillbaka</button>
+    </div>`;
+  app.appendChild(s);
+  s.querySelector('#b').onclick=start;
+  window.scrollTo(0,0);
+}
+
+start();
+</script>
+</body>
+</html>

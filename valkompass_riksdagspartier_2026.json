@@ -1,0 +1,2651 @@
+{
+  "metadata": {
+    "title": "Valkompassdata – svenska riksdagspartiernas politik inför valet 2026",
+    "created_utc": "2026-05-29T16:24:27+00:00",
+    "retrieved_date": "2026-05-29",
+    "scope": "Samtliga åtta riksdagspartier. Prioriterat partiernas egna webbplatser, press-/nyhetssidor, PDF:er och policy-/budgetdokument.",
+    "language": "sv-SE",
+    "important_limitations": [
+      "Detta är en källbaserad snapshot, inte en juridiskt komplett redovisning av varje motion eller samtliga underdokument.",
+      "Där slutligt nationellt valmanifest/valplattform för 2026 inte hittades i öppna officiella källor är status markerad som ej hittad och data bygger på valkampanj, handlingsprogram, inriktningsdokument, budgetmaterial och policyrapporter.",
+      "Budgetbelopp är endast införda när de uttryckligen framgick av partiets öppna material som hämtades. Full finansieringstabell bör valideras mot respektive fullständiga budgetmotion/budgetproposition före publicering.",
+      "Fältet valkompass_axes är härlett från partipositionerna och ska ses som startmaterial för redaktionell normalisering, inte som automatisk slutklassning."
+    ],
+    "parties_included": [
+      "S",
+      "M",
+      "SD",
+      "V",
+      "C",
+      "KD",
+      "MP",
+      "L"
+    ],
+    "source_policy": "Källor är partiernas egna sidor/PDF:er om inte annat anges. Source IDs refererar till objekt i respektive partis sources-array.",
+    "recommended_refresh_cadence": "Dagligen under aktiv valrörelse och efter varje budget-/manifestpublicering."
+  },
+  "issue_index": {
+    "economy_tax": {
+      "label": "Ekonomi, skatt och hushåll",
+      "description": "Skattepolitik, bidrag, vardagskostnader, hushållsekonomi och finansiering."
+    },
+    "jobs_business": {
+      "label": "Jobb, företagande och tillväxt",
+      "description": "Arbetsmarknad, företag, sysselsättning, industri och konkurrenskraft."
+    },
+    "welfare_healthcare": {
+      "label": "Välfärd, vård och omsorg",
+      "description": "Sjukvård, äldreomsorg, socialtjänst, statsbidrag och offentliga välfärdssystem."
+    },
+    "school_education": {
+      "label": "Skola och utbildning",
+      "description": "Grundskola, gymnasium, friskolor, lärarvillkor, studiero och kunskapskrav."
+    },
+    "crime_security": {
+      "label": "Kriminalitet, polis och trygghet",
+      "description": "Brottsbekämpning, prevention, straff, polis, gängkriminalitet och våld i nära relationer."
+    },
+    "migration_integration": {
+      "label": "Migration och integration",
+      "description": "Asyl, invandring, utvisning, krav, språk, arbete och parallellsamhällen."
+    },
+    "climate_energy": {
+      "label": "Klimat, miljö och energi",
+      "description": "Klimatmål, energislag, elektrifiering, natur, biologisk mångfald och utsläppsminskningar."
+    },
+    "transport_infrastructure": {
+      "label": "Transporter och infrastruktur",
+      "description": "Kollektivtrafik, järnväg, väg, drivmedel, elbilar och regional tillgänglighet."
+    },
+    "rural_housing": {
+      "label": "Landsbygd, bostäder och regional utveckling",
+      "description": "Hela landet, lokal service, bostadsmarknad, byggande och regionala klyftor."
+    },
+    "defense_security": {
+      "label": "Försvar, säkerhet och beredskap",
+      "description": "Totalförsvar, civilt försvar, Nato/EU, krisberedskap och internationell säkerhet."
+    },
+    "democracy_culture": {
+      "label": "Demokrati, kultur och civilsamhälle",
+      "description": "Public service, rättsstat, kultur, föreningsliv, folkbildning och mänskliga rättigheter."
+    },
+    "family_social": {
+      "label": "Familj, äldre, barn och social trygghet",
+      "description": "Familjepolitik, barn, pensioner, äldreomsorg, LSS och socialförsäkringar."
+    },
+    "jobs_growth": {
+      "label": "Jobb, tillväxt och industri",
+      "description": "Sysselsättning, industri, investeringar och tillväxtpolitik."
+    },
+    "health_welfare": {
+      "label": "Vård och välfärd",
+      "description": "Sjukvård, social trygghet, omsorg och statsbidrag."
+    },
+    "transport_energy": {
+      "label": "Transport, drivmedel och energi",
+      "description": "Drivmedel, transportkostnader, elförsörjning och energipolitik."
+    },
+    "identity_culture": {
+      "label": "Nationell identitet, språk och kultur",
+      "description": "Språk, kultur, samhällsgemenskap och identitetspolitik."
+    },
+    "jobs_working_life": {
+      "label": "Arbetsliv och jobb",
+      "description": "Arbetsvillkor, arbetstid, arbetsmiljö och jobbskapande."
+    },
+    "migration_human_rights": {
+      "label": "Migration och mänskliga rättigheter",
+      "description": "Asyl, migration, antirasism, rättsstat och folkrätt."
+    },
+    "housing_rural": {
+      "label": "Bostäder och landsbygd",
+      "description": "Bostadspolitik, regional utveckling och lokala resurser."
+    },
+    "culture_democracy": {
+      "label": "Kultur och demokrati",
+      "description": "Kultur, folkbildning, civilsamhälle och demokratisk infrastruktur."
+    },
+    "rural_infrastructure": {
+      "label": "Landsbygd och infrastruktur",
+      "description": "Regional service, vägar, järnväg och hela-landet-politik."
+    },
+    "democracy_values": {
+      "label": "Demokrati och värderingar",
+      "description": "Liberaldemokratiska värden, frihet, ansvar och lokal självbestämmanderätt."
+    },
+    "family_households": {
+      "label": "Familj och hushållsekonomi",
+      "description": "Familjepolitik, barnfamiljers ekonomi och vardagskostnader."
+    },
+    "healthcare": {
+      "label": "Sjukvård",
+      "description": "Vårdens styrning, köer, ansvarsfördelning och reformer."
+    },
+    "elderly": {
+      "label": "Äldrepolitik",
+      "description": "Äldreomsorg, mat, pensionärer och värdigt åldrande."
+    },
+    "crime_security_values": {
+      "label": "Trygghet, värderingar och samhällsgemenskap",
+      "description": "Kriminalitet, extremism, samhällsgemenskap och värderingspolitik."
+    },
+    "business_growth": {
+      "label": "Företagande och tillväxt",
+      "description": "Småföretag, byggande, industri och regleringar."
+    },
+    "housing_tax": {
+      "label": "Bostad och flyttskatt",
+      "description": "Flyttskatt, uppskov, bostadsbyggande och rörlighet."
+    },
+    "children_digital": {
+      "label": "Barn, unga och digital miljö",
+      "description": "Barns psykiska hälsa, sociala medier, skärmtid och föräldraansvar."
+    },
+    "nature_environment": {
+      "label": "Natur och miljö",
+      "description": "Biologisk mångfald, skog, hav, strandskydd och allemansrätt."
+    },
+    "equality_welfare": {
+      "label": "Jämlikhet och välfärd",
+      "description": "Ekonomisk jämlikhet, välfärd, statsbidrag och stöd till hushåll."
+    },
+    "transport": {
+      "label": "Transporter och kollektivtrafik",
+      "description": "Kollektivtrafik, tågresor, elbilar och transportomställning."
+    },
+    "crime_democracy_culture": {
+      "label": "Trygghet, demokrati och kultur",
+      "description": "Förebyggande trygghetsarbete, kultur, civilsamhälle och demokrati."
+    },
+    "health_lss": {
+      "label": "Vård, psykisk hälsa och LSS",
+      "description": "Vårdrapporter, psykisk hälsa, LSS och funktionsrätt."
+    },
+    "eu_foreign_democracy": {
+      "label": "EU, utrikespolitik och demokratiska institutioner",
+      "description": "EU, euro, public service, utrikespolitik och institutionell demokrati."
+    },
+    "infrastructure": {
+      "label": "Infrastruktur",
+      "description": "Vägar, järnvägar, underhåll och transportinfrastruktur."
+    },
+    "integration": {
+      "label": "Integration",
+      "description": "Språk, jobb, krav, utsatta områden och parallellsamhällen."
+    }
+  },
+  "parties": [
+    {
+      "id": "S",
+      "name": "Socialdemokraterna",
+      "parliamentary_status_2022_2026": "oppositionsparti",
+      "election_2026_material_status": {
+        "status": "publicerad valplattform/valplan",
+        "title": "Plan för Sverige",
+        "source_ids": [
+          "S_VAL_2026",
+          "S_PLAN_NEWS"
+        ],
+        "data_quality": "hög för huvudprioriteringar och budget; fortsatt bevakning krävs för slutligt valmanifest och regionala varianter"
+      },
+      "coalition_or_government_position": "Driver regeringsskifte och ny riktning; bygger valplattformen kring stark ekonomi, välfärd och trygghet/säkerhet.",
+      "headline_priorities": [
+        "En stark ekonomi som gynnar vanligt folk",
+        "En välfärd som går att lita på",
+        "Trygghet och säkerhet i hela landet"
+      ],
+      "budget_2026": {
+        "status": "egen budgetmotion och vårbudget publicerad",
+        "headline": "Prioriterar hushållsekonomi, välfärd, jobb/tillväxt, kriminalpolitik och socialt förebyggande arbete framför skattesänkningar för höginkomsttagare.",
+        "major_amounts_and_measures": [
+          {
+            "label": "Kommuner och regioner",
+            "amount": "nästan 13 miljarder kr",
+            "direction": "ökad utgift",
+            "notes": "Tillskott för välfärd i budgetmotionen.",
+            "source_ids": [
+              "S_BUDGET_2026"
+            ]
+          },
+          {
+            "label": "Skola och förskola",
+            "amount": "över 4 miljarder kr",
+            "direction": "ökad utgift",
+            "notes": "Satsning på skola/förskola.",
+            "source_ids": [
+              "S_BUDGET_2026"
+            ]
+          },
+          {
+            "label": "Äldreomsorg",
+            "amount": "4000 nya kollegor",
+            "direction": "ökad bemanning",
+            "notes": "Bemanningssatsning i äldreomsorgen.",
+            "source_ids": [
+              "S_BUDGET_2026"
+            ]
+          },
+          {
+            "label": "Socialtjänstlyft",
+            "amount": "1,7 miljarder kr",
+            "direction": "ökad utgift",
+            "notes": "Socialt förebyggande arbete och trygghet.",
+            "source_ids": [
+              "S_BUDGET_2026"
+            ]
+          },
+          {
+            "label": "Barnbidrag och studiebidrag",
+            "amount": "+200 kr per månad",
+            "direction": "hushållsstöd",
+            "notes": "Höjning för barnfamiljer och studerande.",
+            "source_ids": [
+              "S_BUDGET_2026"
+            ]
+          },
+          {
+            "label": "Bostadsbidrag",
+            "amount": "upp till +1000 kr per månad",
+            "direction": "hushållsstöd",
+            "notes": "Riktat stöd till hushåll med små marginaler.",
+            "source_ids": [
+              "S_BUDGET_2026"
+            ]
+          },
+          {
+            "label": "Karensavdrag",
+            "amount": "avskaffas från 1 juli 2026",
+            "direction": "socialförsäkringsreform",
+            "notes": "Sänker kostnad för sjukfrånvaro för löntagare.",
+            "source_ids": [
+              "S_BUDGET_2026"
+            ]
+          },
+          {
+            "label": "Vårbudget 2026",
+            "amount": "2,8 miljarder kr i reformer",
+            "direction": "ökad utgift",
+            "notes": "Finansieras i vårbudgeten med tillfällig bankskatt som uppges ge 4 miljarder kr.",
+            "source_ids": [
+              "S_SPRING_2026"
+            ]
+          }
+        ],
+        "financing": [
+          "Tillfällig bankskatt i vårbudgeten.",
+          "Stoppa skattebonusar för höginkomsttagare.",
+          "Stoppa överkompensation till fristående skolor.",
+          "Besparingar och omprioriteringar anges i budgetmotionen."
+        ],
+        "source_ids": [
+          "S_BUDGET_2026",
+          "S_SPRING_2026"
+        ]
+      },
+      "policy_areas": [
+        {
+          "issue_id": "economy_tax",
+          "label": "Ekonomi, skatt och hushåll",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Stärka hushållens ekonomi och sätta vanligt folk först; kritiserar stora skattesänkningar för höginkomsttagare.",
+          "main_proposals": [
+            "Höjt barnbidrag och studiebidrag",
+            "Höjt bostadsbidrag",
+            "Billigare mediciner",
+            "Avgiftsfri tandvård för unga",
+            "Press på banker och matkedjor",
+            "Skydd mot höga elpriser",
+            "Höjda pensioner/insatser för pensionärer"
+          ],
+          "budget_or_financing_notes": [
+            "Finansiering bland annat med bankskatt och stoppade skattebonusar för höginkomsttagare."
+          ],
+          "source_ids": [
+            "S_VAL_2026",
+            "S_BUDGET_2026",
+            "S_SPRING_2026"
+          ],
+          "parent_issue_id": "economy_tax"
+        },
+        {
+          "issue_id": "jobs_growth",
+          "label": "Jobb, tillväxt och industri",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Vill ha en tillväxtplan och aktiv närings-/industripolitik för fler jobb.",
+          "main_proposals": [
+            "Tillväxtpakt",
+            "Jobbsatsningar",
+            "Aktivitetsplikt",
+            "Jobbtrappa",
+            "Bostads- och infrastruktursatsningar",
+            "Gröna krediter",
+            "Industriklivet",
+            "Export- och industrifrämjande",
+            "Skydd mot sjuklönekostnader för småföretag"
+          ],
+          "budget_or_financing_notes": [
+            "Budgetmotionen innehåller miljardinsatser för jobb, bostäder, infrastruktur och industri."
+          ],
+          "source_ids": [
+            "S_VAL_2026",
+            "S_BUDGET_2026"
+          ],
+          "parent_issue_id": "jobs_business"
+        },
+        {
+          "issue_id": "welfare_healthcare",
+          "label": "Sjukvård och välfärd",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Vill korta vårdköer, stärka personalen och stoppa privatisering av akutsjukhus.",
+          "main_proposals": [
+            "Kortare vårdköer",
+            "Fast läkare",
+            "Stärkt psykiatri",
+            "Stoppa privatisering av akutsjukhus",
+            "Större statsbidrag till kommuner och regioner"
+          ],
+          "budget_or_financing_notes": [
+            "Nästan 13 miljarder kr mer till kommuner och regioner i budgetmotionen."
+          ],
+          "source_ids": [
+            "S_VAL_2026",
+            "S_BUDGET_2026"
+          ],
+          "parent_issue_id": "welfare_healthcare"
+        },
+        {
+          "issue_id": "school_education",
+          "label": "Skola och utbildning",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Vill ha mindre klasser, mer likvärdig skola och begränsa vinstintressen.",
+          "main_proposals": [
+            "Små klasser",
+            "Vinstförbud i skolan",
+            "Åtgärder mot religiösa friskolor",
+            "Över 4 miljarder kr till skola/förskola"
+          ],
+          "budget_or_financing_notes": [
+            "Budgetmotionen anger över 4 miljarder kr till skola och förskola."
+          ],
+          "source_ids": [
+            "S_VAL_2026",
+            "S_BUDGET_2026"
+          ],
+          "parent_issue_id": "school_education"
+        },
+        {
+          "issue_id": "crime_security",
+          "label": "Kriminalitet och trygghet",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Kombinerar hårdare tag mot gäng med socialt förebyggande arbete.",
+          "main_proposals": [
+            "Maffialag",
+            "Riskfamiljsprogram",
+            "Mer resurser till kriminalvård",
+            "Stärkt brottsofferstöd och kvinnojourer",
+            "Förbud mot aktivklubbar"
+          ],
+          "budget_or_financing_notes": [
+            "1,7 miljarder kr till socialtjänstlyft i budgetmotionen; vårbudgeten anger också 200 miljoner kr till socialtjänstlyft och 100 miljoner kr till kvinnojourer."
+          ],
+          "source_ids": [
+            "S_VAL_2026",
+            "S_BUDGET_2026",
+            "S_SPRING_2026"
+          ],
+          "parent_issue_id": "crime_security"
+        },
+        {
+          "issue_id": "migration_integration",
+          "label": "Migration och integration",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Anger att den strama migrationspolitiken ligger fast; fokus på samhällsgemenskap och arbete.",
+          "main_proposals": [
+            "Stram migrationspolitik",
+            "Aktivitetsplikt",
+            "Jobbtrappa",
+            "Krav och egen försörjning"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "S_VAL_2026",
+            "S_BUDGET_2026"
+          ],
+          "parent_issue_id": "migration_integration"
+        },
+        {
+          "issue_id": "defense_security",
+          "label": "Försvar, beredskap och säkerhet",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Vill stärka totalförsvaret och samhällsberedskapen.",
+          "main_proposals": [
+            "Stärkt totalförsvar",
+            "Samhällsgemenskap",
+            "Skydd av public service och föreningsliv som del av demokratisk robusthet"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "S_VAL_2026"
+          ],
+          "parent_issue_id": "defense_security"
+        },
+        {
+          "issue_id": "climate_energy",
+          "label": "Klimat och energi",
+          "priority_in_2026_material": "medel",
+          "position_summary": "Grön industri och elprisskydd ingår, men klimat är inte en av de tre huvudrubrikerna i valplattformen.",
+          "main_proposals": [
+            "Gröna krediter",
+            "Industriklivet",
+            "Skydd mot höga elpriser"
+          ],
+          "budget_or_financing_notes": [
+            "Gröna krediter och Industriklivet nämns i budgetmotionen."
+          ],
+          "source_ids": [
+            "S_BUDGET_2026",
+            "S_VAL_2026"
+          ],
+          "parent_issue_id": "climate_energy"
+        }
+      ],
+      "sources": [
+        {
+          "id": "S_VAL_2026",
+          "title": "Val 2026: Plan för Sverige",
+          "url": "https://www.socialdemokraterna.se/val-2026",
+          "source_type": "official_party_page",
+          "retrieved_date": "2026-05-29",
+          "source_date": "2026"
+        },
+        {
+          "id": "S_PLAN_NEWS",
+          "title": "Plan för Sverige – Socialdemokraterna presenterar valplattform 2026",
+          "url": "https://www.socialdemokraterna.se/nyheter/nyheter/2026-02-05-plan-for-sverige---socialdemokraterna-presenterar-valplattform-2026",
+          "source_type": "official_party_news",
+          "retrieved_date": "2026-05-29",
+          "source_date": "2026-02-05"
+        },
+        {
+          "id": "S_BUDGET_2026",
+          "title": "Socialdemokraternas förslag till budget för 2026 – Ny riktning för Sverige",
+          "url": "https://www.socialdemokraterna.se/nyheter/nyheter/2025-10-06-socialdemokraternas-forslag-till-budget-for-2026---ny-riktning-for-sverige",
+          "source_type": "official_party_news",
+          "retrieved_date": "2026-05-29",
+          "source_date": "2025-10-06"
+        },
+        {
+          "id": "S_SPRING_2026",
+          "title": "S vårbudget för 2026: Plan för Sverige – en vårbudget för vanligt folk",
+          "url": "https://www.socialdemokraterna.se/nyheter/nyheter/2026-04-28-s-varbudget-for-2026-plan-for-sverige---en-varbudget-for-vanligt-folk",
+          "source_type": "official_party_news",
+          "retrieved_date": "2026-05-29",
+          "source_date": "2026-04-28"
+        }
+      ]
+    },
+    {
+      "id": "M",
+      "name": "Moderaterna",
+      "parliamentary_status_2022_2026": "regeringsparti",
+      "election_2026_material_status": {
+        "status": "politiskt handlingsprogram och budgetmaterial publicerat; slutligt nationellt valmanifest 2026 ej hittat i sökt officiellt material",
+        "title": "Handlingsprogram för 2030-talet; En budget för hårt arbetande människor",
+        "source_ids": [
+          "M_HANDLINGSPROGRAM",
+          "M_BUDGET_2026",
+          "M_BUDGET_PASSED_2026"
+        ],
+        "data_quality": "medel: god grund för prioriteringar och budgetprofil, men bör uppdateras när slutligt valmanifest publiceras"
+      },
+      "coalition_or_government_position": "Driver fortsatt moderatledd regeringspolitik med arbetslinje, skattesänkningar, ordning och trygghet samt satsningar på försvar, skola och rättsväsende.",
+      "headline_priorities": [
+        "Hårt arbetande människor ska få mer kvar i plånboken",
+        "Arbetslinjen och lägre skatt på arbete/pension",
+        "Trygghet, rättsväsende och förebyggande insatser",
+        "Försvar och säkerhet",
+        "Skola och välfärd"
+      ],
+      "budget_2026": {
+        "status": "regerings-/partibudgetprofil publicerad",
+        "headline": "Budgeten betonar sänkt skatt på arbete och pension, tillfällig halvering av matmomsen, sänkt elskatt, lägre förskoleavgifter, stärkt bostadsbidrag och satsningar på rättsväsende, försvar och skola.",
+        "major_amounts_and_measures": [
+          {
+            "label": "Reformutrymme",
+            "amount": "nära 80 miljarder kr",
+            "direction": "reformer",
+            "notes": "Moderaterna anger att budgetens reformer uppgår till nästan 80 miljarder kr.",
+            "source_ids": [
+              "M_BUDGET_PASSED_2026"
+            ]
+          },
+          {
+            "label": "Matmoms",
+            "amount": "12% till 6%",
+            "direction": "skattesänkning",
+            "notes": "Tillfällig sänkning april 2026–december 2027.",
+            "source_ids": [
+              "M_BUDGET_2026"
+            ]
+          },
+          {
+            "label": "Jobbskatteavdrag",
+            "amount": "ej belopp i hämtad sammanfattning",
+            "direction": "skattesänkning",
+            "notes": "Lägre skatt på arbete och pension.",
+            "source_ids": [
+              "M_BUDGET_2026"
+            ]
+          },
+          {
+            "label": "Elskatt",
+            "amount": "sänks",
+            "direction": "skattesänkning",
+            "notes": "Lägre skatt på el för hushåll.",
+            "source_ids": [
+              "M_BUDGET_2026"
+            ]
+          },
+          {
+            "label": "Förskoleavgifter",
+            "amount": "sänks",
+            "direction": "hushållsstöd",
+            "notes": "Lägre kostnad för barnfamiljer.",
+            "source_ids": [
+              "M_BUDGET_2026"
+            ]
+          },
+          {
+            "label": "Bostadsbidrag",
+            "amount": "tak höjs",
+            "direction": "hushållsstöd",
+            "notes": "Stärkt bostadsbidrag för hushåll med små marginaler.",
+            "source_ids": [
+              "M_BUDGET_2026"
+            ]
+          }
+        ],
+        "financing": [
+          "Regeringsbudgetens finansiering behöver hämtas ur fullständig budgetproposition för exakt tabellnivå; partiets egen sida sammanfattar reformerna men inte alla finansieringsposter."
+        ],
+        "source_ids": [
+          "M_BUDGET_2026",
+          "M_BUDGET_PASSED_2026"
+        ]
+      },
+      "policy_areas": [
+        {
+          "issue_id": "economy_tax",
+          "label": "Ekonomi och skatt",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Vill stärka hushållens köpkraft genom lägre skatt på arbete och pension samt sänkta vardagskostnader.",
+          "main_proposals": [
+            "Jobbskatteavdrag",
+            "Lägre pensionärsskatt",
+            "Tillfälligt halverad matmoms",
+            "Lägre elskatt",
+            "Lägre förskoleavgifter",
+            "Stärkt bostadsbidrag"
+          ],
+          "budget_or_financing_notes": [
+            "Nära 80 miljarder kr i reformer enligt partiets budgetkommunikation."
+          ],
+          "source_ids": [
+            "M_BUDGET_2026",
+            "M_BUDGET_PASSED_2026"
+          ],
+          "parent_issue_id": "economy_tax"
+        },
+        {
+          "issue_id": "jobs_business",
+          "label": "Arbete och företagande",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Arbetslinjen är central; politiken ska göra det mer lönsamt att arbeta och enklare att driva företag.",
+          "main_proposals": [
+            "Lägre skatt på arbete",
+            "Fokus på jobb och företag i handlingsprogrammet",
+            "Regelförenklingar och tillväxtpolitik"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "M_HANDLINGSPROGRAM",
+            "M_BUDGET_2026"
+          ],
+          "parent_issue_id": "jobs_business"
+        },
+        {
+          "issue_id": "crime_security",
+          "label": "Lag och ordning",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Vill att brott ska straffas och att rättsväsendet och förebyggande arbete förstärks.",
+          "main_proposals": [
+            "Satsningar på rättsväsendet",
+            "Förebyggande insatser",
+            "Tuffare kriminalpolitik som del av moderat profil"
+          ],
+          "budget_or_financing_notes": [
+            "Partiets budgetsida anger satsningar på rättsväsendet och förebyggande arbete."
+          ],
+          "source_ids": [
+            "M_BUDGET_PASSED_2026",
+            "M_HANDLINGSPROGRAM"
+          ],
+          "parent_issue_id": "crime_security"
+        },
+        {
+          "issue_id": "defense_security",
+          "label": "Försvar och säkerhet",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Försvar och internationell säkerhet ingår som ett av handlingsprogrammets tio politikområden och förstärks i budgetprofilen.",
+          "main_proposals": [
+            "Stärkt försvar",
+            "Civil beredskap",
+            "Internationell säkerhet"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "M_HANDLINGSPROGRAM",
+            "M_BUDGET_PASSED_2026"
+          ],
+          "parent_issue_id": "defense_security"
+        },
+        {
+          "issue_id": "school_education",
+          "label": "Skola",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Skolan är ett av handlingsprogrammets huvudområden och partiets budgetprofil anger satsningar på skolan.",
+          "main_proposals": [
+            "Satsningar på skolan",
+            "Kunskap och studiero",
+            "Likvärdighet genom reformer"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "M_HANDLINGSPROGRAM",
+            "M_BUDGET_PASSED_2026"
+          ],
+          "parent_issue_id": "school_education"
+        },
+        {
+          "issue_id": "health_welfare",
+          "label": "Vård och välfärd",
+          "priority_in_2026_material": "medel",
+          "position_summary": "Handlingsprogrammet omfattar sjukvård; budgetprofilen fokuserar också på hushållsekonomi och välfärd.",
+          "main_proposals": [
+            "Sjukvårdsreformer",
+            "Lägre skatt för personer med sjuk- och aktivitetsersättning"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "M_HANDLINGSPROGRAM",
+            "M_BUDGET_2026"
+          ],
+          "parent_issue_id": "welfare_healthcare"
+        },
+        {
+          "issue_id": "migration_integration",
+          "label": "Migration och integration",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Migration och integration är ett av handlingsprogrammets tio huvudområden, med fokus på ordning, krav och integration.",
+          "main_proposals": [
+            "Stramare migrationslinje",
+            "Kravbaserad integration",
+            "Arbete och egen försörjning"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "M_HANDLINGSPROGRAM"
+          ],
+          "parent_issue_id": "migration_integration"
+        },
+        {
+          "issue_id": "climate_energy",
+          "label": "Klimat, miljö och energi",
+          "priority_in_2026_material": "medel",
+          "position_summary": "Partiet betonar fossilfri el, konkurrenskraft och klimatpolitik i kombination med tillväxt.",
+          "main_proposals": [
+            "Energipolitik inom handlingsprogrammet",
+            "Elskattesänkning för hushåll",
+            "Konkurrenskraft och stabil elförsörjning"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "M_HANDLINGSPROGRAM",
+            "M_BUDGET_2026"
+          ],
+          "parent_issue_id": "climate_energy"
+        }
+      ],
+      "sources": [
+        {
+          "id": "M_BUDGET_2026",
+          "title": "En budget för hårt arbetande människor",
+          "url": "https://moderaterna.se/nyhet/en-budget-for-hart-arbetande-manniskor/",
+          "source_type": "official_party_news",
+          "retrieved_date": "2026-05-29",
+          "source_date": "2025-09-22"
+        },
+        {
+          "id": "M_BUDGET_PASSED_2026",
+          "title": "Moderaternas budget räddar Sverige från Socialdemokraternas budgethål",
+          "url": "https://moderaterna.se/nyhet/moderaternas-budget-raddar-sverige-fran-socialdemokraternas-budgethal/",
+          "source_type": "official_party_news",
+          "retrieved_date": "2026-05-29",
+          "source_date": "2025-12-03"
+        },
+        {
+          "id": "M_HANDLINGSPROGRAM",
+          "title": "Handlingsprogram för 2030-talet",
+          "url": "https://moderaterna.se/handlingsprogram-for-2030-talet/",
+          "source_type": "official_party_page",
+          "retrieved_date": "2026-05-29",
+          "source_date": "2025-2026"
+        },
+        {
+          "id": "M_POLITIK",
+          "title": "Vår politik",
+          "url": "https://moderaterna.se/var-politik/",
+          "source_type": "official_party_page",
+          "retrieved_date": "2026-05-29"
+        }
+      ]
+    },
+    {
+      "id": "SD",
+      "name": "Sverigedemokraterna",
+      "parliamentary_status_2022_2026": "samarbetsparti till regeringen genom Tidösamarbetet",
+      "election_2026_material_status": {
+        "status": "inriktningsdokument för valplattform publicerat; slutlig fullständig valplattform ej hittad i sökt officiellt material",
+        "title": "Sverige ska vara tryggt, fritt och svenskt",
+        "source_ids": [
+          "SD_VALPLATFORM_2026_DIR",
+          "SD_VAD_VI_VILL"
+        ],
+        "data_quality": "medel: tydliga prioriteringar, men kostnads- och finansieringsnivåer är begränsade i inriktningsdokumentet"
+      },
+      "coalition_or_government_position": "Efter valet vill partiet antingen sitta i regering eller gå i opposition; dokumentet ger partiordföranden förhandlingsmandat och markerar prioriteringar inför valplattformen.",
+      "headline_priorities": [
+        "Trygg i Sverige",
+        "Fri i Sverige",
+        "Svensk i Sverige",
+        "Stram migration och kravbaserad integration",
+        "Hårdare kriminalpolitik och starkt totalförsvar"
+      ],
+      "budget_2026": {
+        "status": "saknar fullständig egen budgettabell i hämtat valplattformsmaterial; enskilda reform- och prioriteringssidor finns",
+        "headline": "Prioriterar låg invandring, låg drivmedelskostnad, tandvård, välfärd, trygghet och nationell sammanhållning; exakt budgettabell bör kompletteras med partiets fullständiga budgetmotion om den publiceras på partiets dokumentsida.",
+        "major_amounts_and_measures": [
+          {
+            "label": "ISK",
+            "amount": "300 000 kr skattefri grundnivå",
+            "direction": "skattesänkning/sparande",
+            "notes": "Reformsida anger skattefri grundnivå på ISK från 2026.",
+            "source_ids": [
+              "SD_ISK_2026"
+            ]
+          },
+          {
+            "label": "Drivmedel",
+            "amount": "fortsatt låga drivmedelspriser",
+            "direction": "skatte-/regleringslinje",
+            "notes": "Partiet framhåller låga drivmedelspriser och låg reduktionsplikt.",
+            "source_ids": [
+              "SD_VAD_VI_VILL",
+              "SD_VALPLATFORM_2026_DIR"
+            ]
+          }
+        ],
+        "financing": [
+          "Partiet anger på sin politiköversikt att välfärd ska kunna finansieras bland annat genom lägre bistånd och långsiktigt hållbar migration; full tabell bör kontrolleras i budgetmotion."
+        ],
+        "source_ids": [
+          "SD_VALPLATFORM_2026_DIR",
+          "SD_VAD_VI_VILL",
+          "SD_ISK_2026"
+        ]
+      },
+      "policy_areas": [
+        {
+          "issue_id": "crime_security",
+          "label": "Trygghet och kriminalitet",
+          "priority_in_2026_material": "mycket hög",
+          "position_summary": "Kärnfråga i valplattformens inriktning: hårdare tag mot gäng, sexualbrott och brottslighet samt mer närvarande polis.",
+          "main_proposals": [
+            "Jakt på gängen",
+            "Stopp för pedofiler",
+            "Närvarande polis",
+            "Stark kriminalpolitik",
+            "Starkt totalförsvar"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "SD_VALPLATFORM_2026_DIR",
+            "SD_VAD_VI_VILL"
+          ],
+          "parent_issue_id": "crime_security"
+        },
+        {
+          "issue_id": "migration_integration",
+          "label": "Migration och integration",
+          "priority_in_2026_material": "mycket hög",
+          "position_summary": "Vill ha strikt invandring, utvisning av personer utan rätt att vistas i landet och kriminalitet som grund för utvisning; integrationen ska bygga på krav.",
+          "main_proposals": [
+            "Strikt invandring",
+            "Utvisa illegala och kriminella utlänningar",
+            "Kravbaserad integration",
+            "Skärpta bidragsregler",
+            "Uppgradera medborgarskapet",
+            "Stoppa tvångsblandning enligt partiets formulering"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "SD_VALPLATFORM_2026_DIR",
+            "SD_VAD_VI_VILL"
+          ],
+          "parent_issue_id": "migration_integration"
+        },
+        {
+          "issue_id": "identity_culture",
+          "label": "Nationell sammanhållning, språk och kultur",
+          "priority_in_2026_material": "mycket hög",
+          "position_summary": "Vill stärka svensk identitet, språk och kultur samt motverka islamism och det partiet beskriver som svenskfientlighet.",
+          "main_proposals": [
+            "Stärk svenska språket",
+            "Anti-islamism",
+            "Premiera svenska produkter",
+            "Motverka svenskfientlighet",
+            "Stärk medborgarskapets betydelse"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "SD_VALPLATFORM_2026_DIR"
+          ],
+          "parent_issue_id": "democracy_culture"
+        },
+        {
+          "issue_id": "welfare_healthcare",
+          "label": "Välfärd och vård",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Vill stärka sjuk- och arbetslöshetsförsäkring, behålla närsjukhus och göra tandvård billigare.",
+          "main_proposals": [
+            "Billigare tandvård",
+            "Starkt skydd vid sjukdom och arbetslöshet",
+            "Behåll närsjukhusen",
+            "Värdigt åldrande"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "SD_VALPLATFORM_2026_DIR",
+            "SD_VAD_VI_VILL"
+          ],
+          "parent_issue_id": "welfare_healthcare"
+        },
+        {
+          "issue_id": "school_education",
+          "label": "Skola",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Fokuserar på ordning och reda i skolan och kunskapsfokus.",
+          "main_proposals": [
+            "Ordning och reda i skolan",
+            "Trygg skolmiljö",
+            "Kunskapslinje"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "SD_VALPLATFORM_2026_DIR",
+            "SD_VAD_VI_VILL"
+          ],
+          "parent_issue_id": "school_education"
+        },
+        {
+          "issue_id": "economy_tax",
+          "label": "Ekonomi, skatt och sparande",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Vill ha lägre skatter och värna privat ägande/sparande; motsätter sig regleringar som partiet ser som frihetsinskränkande.",
+          "main_proposals": [
+            "Skattefri grundnivå på ISK 300 000 kr",
+            "Lägre skatter",
+            "Stärkt äganderätt",
+            "Oberoende valuta",
+            "Kontanter ska finnas kvar"
+          ],
+          "budget_or_financing_notes": [
+            "ISK-förslag/reform från 2026; övrigt kräver kompletterande budgettabell för belopp."
+          ],
+          "source_ids": [
+            "SD_VALPLATFORM_2026_DIR",
+            "SD_ISK_2026"
+          ],
+          "parent_issue_id": "economy_tax"
+        },
+        {
+          "issue_id": "transport_energy",
+          "label": "Drivmedel, energi och transporter",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Vill hålla nere drivmedelspriser och motsätter sig klimatstyrning som höjer kostnader för hushåll på landsbygd.",
+          "main_proposals": [
+            "Fortsatt låga drivmedelspriser",
+            "Låg reduktionsplikt",
+            "Energipolitik med fokus på pris och försörjning"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "SD_VALPLATFORM_2026_DIR",
+            "SD_VAD_VI_VILL"
+          ],
+          "parent_issue_id": "transport_infrastructure"
+        },
+        {
+          "issue_id": "defense_security",
+          "label": "Totalförsvar och säkerhet",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Vill ha starkt totalförsvar och nationell motståndskraft.",
+          "main_proposals": [
+            "Starkt totalförsvar",
+            "Nationell säkerhet",
+            "Samhällsberedskap"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "SD_VALPLATFORM_2026_DIR"
+          ],
+          "parent_issue_id": "defense_security"
+        }
+      ],
+      "sources": [
+        {
+          "id": "SD_VALPLATFORM_2026_DIR",
+          "title": "Inriktning för Valplattform 2026 samt partiordförandens förhandlingsmandat",
+          "url": "https://event.sd.se/wp-content/uploads/2025/09/forhandlingsmandat-och-riktlinjer-for-valplattformen.pdf",
+          "source_type": "official_party_pdf",
+          "retrieved_date": "2026-05-29",
+          "source_date": "2025-09"
+        },
+        {
+          "id": "SD_VAD_VI_VILL",
+          "title": "Vad vi vill",
+          "url": "https://www.sd.se/vad-vi-vill/",
+          "source_type": "official_party_page",
+          "retrieved_date": "2026-05-29"
+        },
+        {
+          "id": "SD_ISK_2026",
+          "title": "Sänkt skatt på sparande genom skattefri grundnivå på ISK",
+          "url": "https://www.sd.se/reforms/sankt-skatt-pa-sparande-genom-att-en-grundniva-pa-300-000-kr-i-isk-gors-skattefri/",
+          "source_type": "official_party_reform_page",
+          "retrieved_date": "2026-05-29",
+          "source_date": "2026"
+        }
+      ]
+    },
+    {
+      "id": "V",
+      "name": "Vänsterpartiet",
+      "parliamentary_status_2022_2026": "oppositionsparti",
+      "election_2026_material_status": {
+        "status": "valplattform efter kongressbeslut publicerad som preliminär PDF",
+        "title": "Vänsterpartiets valplattform 2026",
+        "source_ids": [
+          "V_VALPLATFORM_2026"
+        ],
+        "data_quality": "hög för ideologisk riktning och prioriteringar; budgetbelopp från budgetnyhet bör kompletteras med full budget-PDF inför produktion"
+      },
+      "coalition_or_government_position": "Vill byta regering och ingå i en rödgrön regering med S och MP, eventuellt C; anger att partiet inte kommer stödja en regering man inte sitter i.",
+      "headline_priorities": [
+        "Social och ekonomisk trygghet",
+        "Rättvis klimatomställning",
+        "Stark välfärd utan marknadsstyrning",
+        "Skolan först och tillgänglig sjukvård",
+        "Jämlikhet, antirasism och folkrätt"
+      ],
+      "budget_2026": {
+        "status": "budgetmotion/nyhet publicerad",
+        "headline": "Skiftar från skattesänkningar till vård, hushållsekonomi, klimatinvesteringar och jobb; finansieras bland annat med bankskatt och högre kapital-/förmögenhetsbeskattning.",
+        "major_amounts_and_measures": [
+          {
+            "label": "Sjukvård",
+            "amount": "5 miljarder kr 2026",
+            "direction": "ökad utgift",
+            "notes": "Sektorsbidrag till vården, med fortsättning 2027 och 2028 enligt partiets budgetkommunikation.",
+            "source_ids": [
+              "V_BUDGET_2026"
+            ]
+          },
+          {
+            "label": "Vård på landsbygden",
+            "amount": "1 miljard kr",
+            "direction": "ökad utgift",
+            "notes": "Satsning på vård i hela landet.",
+            "source_ids": [
+              "V_BUDGET_2026"
+            ]
+          },
+          {
+            "label": "Barnbidrag",
+            "amount": "+400 kr per månad",
+            "direction": "hushållsstöd",
+            "notes": "Höjt och indexerat barnbidrag enligt budgetkommunikation.",
+            "source_ids": [
+              "V_BUDGET_2026"
+            ]
+          },
+          {
+            "label": "Kollektivtrafik",
+            "amount": "Sverigebiljett",
+            "direction": "subvention",
+            "notes": "Nationellt billigare kollektivtrafikkort som del av klimat- och hushållspolitik.",
+            "source_ids": [
+              "V_BUDGET_2026"
+            ]
+          }
+        ],
+        "financing": [
+          "Tillfällig bankövervinstskatt 2026–2028",
+          "Högre kapitalskatter",
+          "Högre skatter på höga inkomster och stora förmögenheter",
+          "Grön ROT och klimatinvesteringar"
+        ],
+        "source_ids": [
+          "V_BUDGET_2026",
+          "V_VALPLATFORM_2026"
+        ]
+      },
+      "policy_areas": [
+        {
+          "issue_id": "economy_tax",
+          "label": "Ekonomi, skatt och jämlikhet",
+          "priority_in_2026_material": "mycket hög",
+          "position_summary": "Vill omfördela från höga inkomster, kapital och banker till välfärd och hushåll med små marginaler.",
+          "main_proposals": [
+            "Höjt barnbidrag",
+            "Högkostnadsskydd/bostadsstöd",
+            "Likvärdig beskattning för sjukskrivna, föräldralediga och arbetslösa",
+            "Högre skatt på höga inkomster och förmögenheter"
+          ],
+          "budget_or_financing_notes": [
+            "Bankövervinstskatt och högre kapitalskatter anges som finansiering."
+          ],
+          "source_ids": [
+            "V_VALPLATFORM_2026",
+            "V_BUDGET_2026"
+          ],
+          "parent_issue_id": "economy_tax"
+        },
+        {
+          "issue_id": "welfare_healthcare",
+          "label": "Välfärd och sjukvård",
+          "priority_in_2026_material": "mycket hög",
+          "position_summary": "Vill stärka offentligt finansierad välfärd, minska köer och ta tillbaka demokratisk kontroll från privata marknadsmodeller.",
+          "main_proposals": [
+            "5 miljarder kr till vården 2026",
+            "1 miljard kr till vård på landsbygden",
+            "Statlig finansiering för likvärdighet",
+            "Avprivatisering/ta tillbaka kontroll",
+            "Tillgänglig sjukvård"
+          ],
+          "budget_or_financing_notes": [
+            "5 miljarder kr till sektorsbidrag 2026 och fortsatt förstärkning 2027/2028 enligt budgetnyhet."
+          ],
+          "source_ids": [
+            "V_VALPLATFORM_2026",
+            "V_BUDGET_2026"
+          ],
+          "parent_issue_id": "welfare_healthcare"
+        },
+        {
+          "issue_id": "school_education",
+          "label": "Skola",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Vill sätta skolan före vinstintresse och stärka likvärdighet och personal.",
+          "main_proposals": [
+            "Skolan först",
+            "Motverka vinstintressen",
+            "Starkare personalvillkor",
+            "Likvärdig utbildning"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "V_VALPLATFORM_2026"
+          ],
+          "parent_issue_id": "school_education"
+        },
+        {
+          "issue_id": "climate_energy",
+          "label": "Klimat, energi och infrastruktur",
+          "priority_in_2026_material": "mycket hög",
+          "position_summary": "Vill genomföra en rättvis grön omställning med stora investeringar i järnväg, kollektivtrafik, elnät, förnybar el och klimatarbete.",
+          "main_proposals": [
+            "Järnväg och transportinfrastruktur",
+            "Elnät och lokal förnybar el",
+            "Havsbaserad vindkraft",
+            "Klimatklivet",
+            "Sverigebiljett",
+            "Fossilfri industri"
+          ],
+          "budget_or_financing_notes": [
+            "Budgetkommunikation anger investeringar i järnväg, elnät, förnybar el och kollektivtrafik."
+          ],
+          "source_ids": [
+            "V_VALPLATFORM_2026",
+            "V_BUDGET_2026"
+          ],
+          "parent_issue_id": "climate_energy"
+        },
+        {
+          "issue_id": "jobs_working_life",
+          "label": "Arbetsliv och jobb",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Vill skapa jobb genom klimatinvesteringar och stärka löntagarnas trygghet.",
+          "main_proposals": [
+            "Arbetstidsförkortning med bibehållen lön",
+            "Bättre arbetsmiljö",
+            "Klimatjobb",
+            "Höjda pensioner"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "V_VALPLATFORM_2026"
+          ],
+          "parent_issue_id": "jobs_business"
+        },
+        {
+          "issue_id": "migration_human_rights",
+          "label": "Migration, antirasism och rättsstat",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Vill ha human migrations- och asylpolitik, antirasism och stark folkrätt.",
+          "main_proposals": [
+            "Human migration/asyl",
+            "Antirasism",
+            "Rättsstat",
+            "Folkrätt",
+            "Internationell solidaritet"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "V_VALPLATFORM_2026"
+          ],
+          "parent_issue_id": "migration_integration"
+        },
+        {
+          "issue_id": "housing_rural",
+          "label": "Bostäder, landsbygd och regional utveckling",
+          "priority_in_2026_material": "medel",
+          "position_summary": "Vill att staten tar större ansvar för bostadsbyggande och att naturresurser förädlas lokalt.",
+          "main_proposals": [
+            "Statligt bostadsansvar",
+            "Lokal förädling av naturresurser",
+            "Rättvis utveckling i hela landet"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "V_VALPLATFORM_2026"
+          ],
+          "parent_issue_id": "rural_housing"
+        },
+        {
+          "issue_id": "culture_democracy",
+          "label": "Kultur, demokrati och folkbildning",
+          "priority_in_2026_material": "medel",
+          "position_summary": "Vill stärka kultur och folkbildning som demokratisk infrastruktur.",
+          "main_proposals": [
+            "Kultur",
+            "Folkbildning",
+            "Demokratisk organisering"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "V_VALPLATFORM_2026"
+          ],
+          "parent_issue_id": "democracy_culture"
+        }
+      ],
+      "sources": [
+        {
+          "id": "V_VALPLATFORM_2026",
+          "title": "Preliminär valplattform efter beslut på kongressen 2026",
+          "url": "https://www.vansterpartiet.se/wp-content/uploads/2026/04/Preliminar-Valplattform-efter-beslut-pa-kongressen-2026.pdf",
+          "source_type": "official_party_pdf",
+          "retrieved_date": "2026-05-29",
+          "source_date": "2026-04"
+        },
+        {
+          "id": "V_BUDGET_2026",
+          "title": "Byt regering för ett starkare och tryggare Sverige",
+          "url": "https://www.vansterpartiet.se/nyheter/byt-regering-for-ett-starkare-och-tryggare-sverige/",
+          "source_type": "official_party_news",
+          "retrieved_date": "2026-05-29",
+          "source_date": "2025-2026"
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "name": "Centerpartiet",
+      "parliamentary_status_2022_2026": "oppositionsparti",
+      "election_2026_material_status": {
+        "status": "valplan publicerad",
+        "title": "Centerpartiets valplan 2026",
+        "source_ids": [
+          "C_VALPLAN_2026"
+        ],
+        "data_quality": "hög för övergripande prioriteringar; budgetdata bör kompletteras med fullständig budgetmotion om exakta utgiftsområden krävs"
+      },
+      "coalition_or_government_position": "Går till val för att byta regering, växa jämfört med 2022 och få avgörande inflytande för sin reformagenda; vill hålla ytterkantspartier borta från regeringsinflytande.",
+      "headline_priorities": [
+        "Fler jobb",
+        "Lägre utsläpp",
+        "Ett Sverige som fungerar i hela landet",
+        "Frihet, ansvar, äganderätt och lokal självbestämmanderätt"
+      ],
+      "budget_2026": {
+        "status": "budgetmotion och vårbudgetmaterial publicerat",
+        "headline": "Prioriterar fler jobb, lägre utsläpp och minskade geografiska klyftor med mindre reformutrymme än regeringen enligt partiets egen sammanfattning.",
+        "major_amounts_and_measures": [
+          {
+            "label": "Reformutrymme",
+            "amount": "70 miljarder kr",
+            "direction": "reformer",
+            "notes": "Partiet anger 70 miljarder kr, 10 miljarder kr mindre än regeringens budget.",
+            "source_ids": [
+              "C_BUDGET_2026"
+            ]
+          },
+          {
+            "label": "Arbetsgivaravgifter",
+            "amount": "13 miljarder kr",
+            "direction": "skattesänkning/arbetsmarknad",
+            "notes": "Lättnader för småföretag, unga och långtidsarbetslösa.",
+            "source_ids": [
+              "C_BUDGET_2026"
+            ]
+          },
+          {
+            "label": "Sysselsättning",
+            "amount": "150 000 fler i arbete",
+            "direction": "mål",
+            "notes": "Budgetkommunikation anger sysselsättningsmål.",
+            "source_ids": [
+              "C_BUDGET_2026"
+            ]
+          },
+          {
+            "label": "Landsbygd nästa mandatperiod",
+            "amount": "50 miljarder kr",
+            "direction": "investering",
+            "notes": "Satsning på landsbygds-Sverige i mandatperiodsperspektiv.",
+            "source_ids": [
+              "C_BUDGET_2026"
+            ]
+          },
+          {
+            "label": "Miljöleasing",
+            "amount": "1500 kr/månad",
+            "direction": "klimat-/hushållsstöd",
+            "notes": "Vårbudgetförslag för klimatsmart bilomställning.",
+            "source_ids": [
+              "C_SPRING_2026"
+            ]
+          },
+          {
+            "label": "Miljöbilspremie begagnad bil",
+            "amount": "50 000 kr",
+            "direction": "klimat-/hushållsstöd",
+            "notes": "För bil under 100 000 kr enligt vårbudgetmaterial.",
+            "source_ids": [
+              "C_SPRING_2026"
+            ]
+          },
+          {
+            "label": "Civilsamhälle",
+            "amount": "1 miljard kr",
+            "direction": "ökad utgift",
+            "notes": "Stärkt civilsamhälle i vårbudgetmaterial.",
+            "source_ids": [
+              "C_SPRING_2026"
+            ]
+          }
+        ],
+        "financing": [
+          "Partiet anger mindre reformutrymme än regeringen; detaljerad finansiering bör hämtas från full budgetmotion för produktionsdatabas."
+        ],
+        "source_ids": [
+          "C_BUDGET_2026",
+          "C_SPRING_2026"
+        ]
+      },
+      "policy_areas": [
+        {
+          "issue_id": "jobs_business",
+          "label": "Jobb och företagande",
+          "priority_in_2026_material": "mycket hög",
+          "position_summary": "Vill bryta arbetslösheten och få fler i arbete genom sänkta kostnader att anställa och bättre villkor för småföretag.",
+          "main_proposals": [
+            "Sänkta arbetsgivaravgifter för småföretag",
+            "Lättnader för unga och långtidsarbetslösa",
+            "150 000 fler i arbete",
+            "Förenklingar för företag"
+          ],
+          "budget_or_financing_notes": [
+            "13 miljarder kr för arbetsgivaravgiftslättnader enligt budgetnyhet."
+          ],
+          "source_ids": [
+            "C_VALPLAN_2026",
+            "C_BUDGET_2026"
+          ],
+          "parent_issue_id": "jobs_business"
+        },
+        {
+          "issue_id": "climate_energy",
+          "label": "Klimat, miljö och energi",
+          "priority_in_2026_material": "mycket hög",
+          "position_summary": "Vill sänka utsläppen samtidigt som ekonomin växer; prioriterar elektrifiering, miljöbilar, vindkraft och gröna investeringar.",
+          "main_proposals": [
+            "Nå klimatmålen",
+            "Miljöleasing",
+            "Miljöbilspremie för begagnad bil",
+            "Ellastbilar och laddinfrastruktur",
+            "Fastighetsskatt på vindkraft tillbaka till kommuner",
+            "Kablar till havsbaserad vindkraft"
+          ],
+          "budget_or_financing_notes": [
+            "Vårbudgetmaterialet anger 1500 kr/månad i miljöleasing och 50 000 kr i miljöbilspremie för begagnad bil under 100 000 kr."
+          ],
+          "source_ids": [
+            "C_VALPLAN_2026",
+            "C_BUDGET_2026",
+            "C_SPRING_2026"
+          ],
+          "parent_issue_id": "climate_energy"
+        },
+        {
+          "issue_id": "rural_infrastructure",
+          "label": "Hela landet, landsbygd och infrastruktur",
+          "priority_in_2026_material": "mycket hög",
+          "position_summary": "Vill minska geografiska klyftor och satsa på service, infrastruktur, skola, vård och äldreomsorg i hela landet.",
+          "main_proposals": [
+            "50 miljarder kr till landsbygds-Sverige nästa mandatperiod",
+            "Vägar, järnväg och samhällsservice",
+            "Väg- och gatubelysning",
+            "Lokal självbestämmanderätt"
+          ],
+          "budget_or_financing_notes": [
+            "50 miljarder kr i mandatperiodsperspektiv enligt partiets budgetkommunikation."
+          ],
+          "source_ids": [
+            "C_VALPLAN_2026",
+            "C_BUDGET_2026",
+            "C_SPRING_2026"
+          ],
+          "parent_issue_id": "rural_housing"
+        },
+        {
+          "issue_id": "welfare_healthcare",
+          "label": "Vård och välfärd",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Vill säkra välfärd nära människor, inklusive vård, skola och äldreomsorg i hela landet.",
+          "main_proposals": [
+            "Vård nära människor",
+            "Specialistvård efter väntetid",
+            "Satsningar på vård, äldreomsorg och skola på landsbygden",
+            "Ungdomsmottagningar"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "C_VALPLAN_2026",
+            "C_BUDGET_2026",
+            "C_SPRING_2026"
+          ],
+          "parent_issue_id": "welfare_healthcare"
+        },
+        {
+          "issue_id": "school_education",
+          "label": "Skola",
+          "priority_in_2026_material": "medel",
+          "position_summary": "Skolan ingår i målet att hela landet ska fungera; betonar likvärdig tillgång och stöd till elever.",
+          "main_proposals": [
+            "Skola i hela landet",
+            "Stöd till elever med frånvaro",
+            "Kompetensförsörjning"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "C_VALPLAN_2026",
+            "C_SPRING_2026"
+          ],
+          "parent_issue_id": "school_education"
+        },
+        {
+          "issue_id": "migration_integration",
+          "label": "Migration och kompetens",
+          "priority_in_2026_material": "medel",
+          "position_summary": "Vill stoppa det partiet beskriver som tonårs- och kompetensutvisningar och betonar arbetskraft/kompetens.",
+          "main_proposals": [
+            "Stoppa tonårsutvisningar",
+            "Stoppa kompetensutvisningar",
+            "Arbetslinje och integration"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "C_SPRING_2026"
+          ],
+          "parent_issue_id": "migration_integration"
+        },
+        {
+          "issue_id": "democracy_values",
+          "label": "Demokrati, frihet och liberal värdegrund",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Valplanen betonar liberaldemokratiska värden och att hålla ytterkantspartier från regeringsinflytande.",
+          "main_proposals": [
+            "Liberal demokrati",
+            "Frihet och ansvar",
+            "Äganderätt",
+            "Lokal självbestämmanderätt"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "C_VALPLAN_2026"
+          ],
+          "parent_issue_id": "democracy_culture"
+        },
+        {
+          "issue_id": "crime_security",
+          "label": "Trygghet och polis",
+          "priority_in_2026_material": "medel",
+          "position_summary": "Vill ha synlig polis och trygghet i hela landet.",
+          "main_proposals": [
+            "Synlig polis i alla kommuner",
+            "Trygghet i hela landet",
+            "Stärkt civilsamhälle"
+          ],
+          "budget_or_financing_notes": [
+            "1 miljard kr till civilsamhället i vårbudgetmaterialet."
+          ],
+          "source_ids": [
+            "C_SPRING_2026"
+          ],
+          "parent_issue_id": "crime_security"
+        }
+      ],
+      "sources": [
+        {
+          "id": "C_VALPLAN_2026",
+          "title": "Centerpartiets valplan 2026",
+          "url": "https://www.centerpartiet.se/download/18.2ee87ccd19c47bc375b8c89/1770910987622/Handout_press_valplan2026.pdf",
+          "source_type": "official_party_pdf",
+          "retrieved_date": "2026-05-29",
+          "source_date": "2026"
+        },
+        {
+          "id": "C_BUDGET_2026",
+          "title": "Fler jobb och lägre utsläpp – en budget för framtiden",
+          "url": "https://www.centerpartiet.se/nyheter/2025/2025-10-07-fler-jobb-och-lagre-utslapp---en-budget-for-framtiden",
+          "source_type": "official_party_news",
+          "retrieved_date": "2026-05-29",
+          "source_date": "2025-10-07"
+        },
+        {
+          "id": "C_SPRING_2026",
+          "title": "Centerpartiets vårbudget 2026",
+          "url": "https://www.centerpartiet.se/download/18.4dd7552719d9a524ff529860/1777275594958/V%C3%A5rbudgeten%202026.pdf",
+          "source_type": "official_party_pdf",
+          "retrieved_date": "2026-05-29",
+          "source_date": "2026-04"
+        }
+      ]
+    },
+    {
+      "id": "KD",
+      "name": "Kristdemokraterna",
+      "parliamentary_status_2022_2026": "regeringsparti",
+      "election_2026_material_status": {
+        "status": "budgetprofil, tal och policyrapporter publicerade; slutligt nationellt valmanifest 2026 ej hittat i sökt officiellt material",
+        "title": "Tro på Sverige; En budget för familjen; 2026-rapporter",
+        "source_ids": [
+          "KD_BUDGET_2026",
+          "KD_TRO_PA_SVERIGE",
+          "KD_REPORTS"
+        ],
+        "data_quality": "medel: tydlig policyutveckling och budgetprofil, men slutligt valmanifest behöver hämtas när det publiceras"
+      },
+      "coalition_or_government_position": "Vill ge nuvarande samarbete fyra år till; profilerar sig på familj, sjukvård, trygghet, äldre, småföretag och värderingsfrågor.",
+      "headline_priorities": [
+        "Familjens ekonomi",
+        "Sjukvård med samlat ansvar och avskaffade regioner",
+        "Trygghet och samhällsgemenskap",
+        "Äldre och värdig omsorg",
+        "Småföretagande och hjärtlandet"
+      ],
+      "budget_2026": {
+        "status": "partiets budgetprofil publicerad som regeringsparti",
+        "headline": "Budgeten beskrivs som en familjebudget med lägre vardagskostnader: matmoms, elskatt, förskoleavgifter, bostadsbidrag och lägre skatter för arbete, pension samt sjuk- och aktivitetsersättning.",
+        "major_amounts_and_measures": [
+          {
+            "label": "Matmoms",
+            "amount": "sänks tillfälligt",
+            "direction": "skattesänkning",
+            "notes": "Partiet lyfter sänkt matmoms för att göra det billigare att vara svensk.",
+            "source_ids": [
+              "KD_BUDGET_2026"
+            ]
+          },
+          {
+            "label": "Elskatt",
+            "amount": "sänks",
+            "direction": "skattesänkning",
+            "notes": "Sänkt elskatt och högkostnadsskydd mot höga elpriser.",
+            "source_ids": [
+              "KD_BUDGET_2026"
+            ]
+          },
+          {
+            "label": "Högkostnadsskydd el",
+            "amount": "november 2025 genom 2026",
+            "direction": "hushållsstöd",
+            "notes": "Skydd mot höga elpriser.",
+            "source_ids": [
+              "KD_BUDGET_2026"
+            ]
+          },
+          {
+            "label": "Bostadsbidrag",
+            "amount": "höjs",
+            "direction": "hushållsstöd",
+            "notes": "Stärkt stöd till barnfamiljer/hushåll.",
+            "source_ids": [
+              "KD_BUDGET_2026"
+            ]
+          },
+          {
+            "label": "Förskole- och fritidsavgifter",
+            "amount": "sänks",
+            "direction": "hushållsstöd",
+            "notes": "Lägre kostnader för barnfamiljer.",
+            "source_ids": [
+              "KD_BUDGET_2026"
+            ]
+          },
+          {
+            "label": "Äldremat",
+            "amount": "äldrematmiljard",
+            "direction": "ökad utgift",
+            "notes": "Tal på KD-dagarna beskriver en äldrematmiljard.",
+            "source_ids": [
+              "KD_TRO_PA_SVERIGE"
+            ]
+          }
+        ],
+        "financing": [
+          "Partiets sammanfattande budgetsida redovisar främst reforminnehåll; full finansiering bör kontrolleras i regeringens budgetproposition och KD:s detaljerade underlag."
+        ],
+        "source_ids": [
+          "KD_BUDGET_2026",
+          "KD_TRO_PA_SVERIGE"
+        ]
+      },
+      "policy_areas": [
+        {
+          "issue_id": "family_households",
+          "label": "Familj och hushållsekonomi",
+          "priority_in_2026_material": "mycket hög",
+          "position_summary": "Vill sänka vardagskostnader och stärka familjers ekonomi.",
+          "main_proposals": [
+            "Sänkt matmoms",
+            "Sänkt elskatt",
+            "Högkostnadsskydd mot elpriser",
+            "Sänkta förskole-/fritidsavgifter",
+            "Höjt bostadsbidrag",
+            "Lägre skatt för arbete och pension"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "KD_BUDGET_2026"
+          ],
+          "parent_issue_id": "family_social"
+        },
+        {
+          "issue_id": "healthcare",
+          "label": "Sjukvård",
+          "priority_in_2026_material": "mycket hög",
+          "position_summary": "Vill samla ansvaret för sjukvården och avskaffa regionerna; vårdreformer finns i 2025/2026-rapporter.",
+          "main_proposals": [
+            "Ett samlat ansvar för sjukvården",
+            "Avskaffa regionerna",
+            "Nationell styrning av kompetensförsörjning, läkemedel, vaccinationer, screening, rättspsykiatri och ambulansflyg i första steg",
+            "Reformagenda för framtidens vård"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "KD_TRO_PA_SVERIGE",
+            "KD_REPORTS"
+          ],
+          "parent_issue_id": "welfare_healthcare"
+        },
+        {
+          "issue_id": "elderly",
+          "label": "Äldrepolitik",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Profilerar äldreomsorg och värdigt åldrande.",
+          "main_proposals": [
+            "Äldrematmiljard",
+            "Seniorpolitiskt handlingsprogram",
+            "Värdig äldreomsorg"
+          ],
+          "budget_or_financing_notes": [
+            "Äldrematmiljard anges i partiledartal."
+          ],
+          "source_ids": [
+            "KD_TRO_PA_SVERIGE",
+            "KD_REPORTS"
+          ],
+          "parent_issue_id": "family_social"
+        },
+        {
+          "issue_id": "crime_security_values",
+          "label": "Trygghet, islamism och samhällsgemenskap",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Vill stärka trygghet, motverka islamism och betonar samhällsgemenskap.",
+          "main_proposals": [
+            "Handlingsplan mot islamism",
+            "Tryggare gator",
+            "Burqa- och niqabförbud i offentliga miljöer enligt partiledartal",
+            "Samhällsgemenskapsrapport"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "KD_TRO_PA_SVERIGE",
+            "KD_REPORTS"
+          ],
+          "parent_issue_id": "crime_security"
+        },
+        {
+          "issue_id": "business_growth",
+          "label": "Småföretagande och tillväxt",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Vill stärka småföretagande, byggande och industriell utveckling.",
+          "main_proposals": [
+            "Ny politik för att stärka småföretagandet",
+            "Färre byråkratiska hinder",
+            "Snabbspår för samhällsbyggande",
+            "Starkare villkor för lantbruk/företag"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "KD_REPORTS",
+            "KD_TRO_PA_SVERIGE"
+          ],
+          "parent_issue_id": "jobs_business"
+        },
+        {
+          "issue_id": "housing_tax",
+          "label": "Bostad och flyttskatt",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Vill stegvis avskaffa flyttskatten och underlätta rörlighet på bostadsmarknaden.",
+          "main_proposals": [
+            "Ta bort uppskovstaket",
+            "Trappa ned reavinstskatten vid längre innehav till 0 procent",
+            "Samhällsbyggarrapport"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "KD_REPORTS"
+          ],
+          "parent_issue_id": "rural_housing"
+        },
+        {
+          "issue_id": "children_digital",
+          "label": "Barn, unga och digital miljö",
+          "priority_in_2026_material": "medel",
+          "position_summary": "Vill stärka barns psykiska hälsa och minska skadlig skärmpåverkan.",
+          "main_proposals": [
+            "Rapport om psykisk hälsa för barn och unga",
+            "Åldersgräns eller striktare regler för sociala medier enligt partiledartal",
+            "Stärkt föräldramakt"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "KD_REPORTS",
+            "KD_TRO_PA_SVERIGE"
+          ],
+          "parent_issue_id": "family_social"
+        },
+        {
+          "issue_id": "climate_energy",
+          "label": "Klimat och havsmiljö",
+          "priority_in_2026_material": "medel",
+          "position_summary": "Har klimat- och havsmiljöprogram i policyunderlag; budgetprofilen betonar också elpriser.",
+          "main_proposals": [
+            "Ny politik för klimat och havsmiljö",
+            "Sänkt elskatt",
+            "Högkostnadsskydd el"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "KD_REPORTS",
+            "KD_BUDGET_2026"
+          ],
+          "parent_issue_id": "climate_energy"
+        }
+      ],
+      "sources": [
+        {
+          "id": "KD_BUDGET_2026",
+          "title": "En budget för familjen",
+          "url": "https://kristdemokraterna.se/var-politik/en-budget-for-familjen",
+          "source_type": "official_party_page",
+          "retrieved_date": "2026-05-29",
+          "source_date": "2025-09-22"
+        },
+        {
+          "id": "KD_REPORTS",
+          "title": "Rapporter och dokument",
+          "url": "https://kristdemokraterna.se/var-politik/rapporter-och-dokument",
+          "source_type": "official_party_page",
+          "retrieved_date": "2026-05-29",
+          "source_date": "2026"
+        },
+        {
+          "id": "KD_TRO_PA_SVERIGE",
+          "title": "Tro på Sverige – Ebba Buschs tal på KD-dagarna 2026",
+          "url": "https://kristdemokraterna.se/arkiv/nyheter/2026/2026-04-17-tro-pa-sverige---ebbas-tal-pa-kd-dagarna-2026",
+          "source_type": "official_party_speech",
+          "retrieved_date": "2026-05-29",
+          "source_date": "2026-04-17"
+        },
+        {
+          "id": "KD_PROMISE_TRACKER",
+          "title": "Vårt hem blir tryggare och starkare",
+          "url": "https://kristdemokraterna.se/var-politik/vart-hem-blir-tryggare-och-starkare",
+          "source_type": "official_party_page",
+          "retrieved_date": "2026-05-29",
+          "source_date": "2026"
+        }
+      ]
+    },
+    {
+      "id": "MP",
+      "name": "Miljöpartiet",
+      "parliamentary_status_2022_2026": "oppositionsparti",
+      "election_2026_material_status": {
+        "status": "valbudskap och politiskt handlingsprogram 2026–2030 publicerat; nationellt valmanifestutkast hittat som lösenordsskyddat och därför inte använt",
+        "title": "Sverige vinner på grön politik; Politiskt handlingsprogram 2026–2030",
+        "source_ids": [
+          "MP_VALBUDSKAP_2026",
+          "MP_HANDLINGSPROGRAM_2026",
+          "MP_HANDLINGSPROGRAM_PDF"
+        ],
+        "data_quality": "hög för prioriteringar och politikområden; slutligt öppet valmanifest bör hämtas när det publiceras utan lösenord"
+      },
+      "coalition_or_government_position": "Driver regeringsskifte/ny riktning med grön politik; valbudskapet fokuserar på klimat, natur och jämlikhet.",
+      "headline_priorities": [
+        "Klimat",
+        "Natur och biologisk mångfald",
+        "Jämlikhet och stark välfärd",
+        "Rättvis klimatomställning",
+        "Demokrati, kultur och civilsamhälle"
+      ],
+      "budget_2026": {
+        "status": "budgetmotion och vårbudgetmotion publicerade",
+        "headline": "Budgeten uppges prioritera klimat, välfärd, hushåll med små marginaler, kollektivtrafik, kultur, demokrati och civilsamhälle.",
+        "major_amounts_and_measures": [
+          {
+            "label": "Sverigekort",
+            "amount": "499 kr/månad",
+            "direction": "kollektivtrafiksubvention",
+            "notes": "Nationellt billigare kollektivtrafikkort.",
+            "source_ids": [
+              "MP_BUDGET_PAGE_2026",
+              "MP_BUDGET_NEWS_2026"
+            ]
+          },
+          {
+            "label": "Bostadsbidrag",
+            "amount": "upp till +2250 kr/månad",
+            "direction": "hushållsstöd",
+            "notes": "Riktat stöd till hushåll med små marginaler.",
+            "source_ids": [
+              "MP_BUDGET_PAGE_2026",
+              "MP_BUDGET_NEWS_2026"
+            ]
+          },
+          {
+            "label": "Barnbidrag och studiehjälp",
+            "amount": "+350 kr per barn/månad",
+            "direction": "hushållsstöd",
+            "notes": "Höjning för barnfamiljer/studerande.",
+            "source_ids": [
+              "MP_BUDGET_PAGE_2026",
+              "MP_BUDGET_NEWS_2026"
+            ]
+          },
+          {
+            "label": "CSN-bidragsdel",
+            "amount": "+300 kr/månad",
+            "direction": "studiestöd",
+            "notes": "Höjd bidragsdel i CSN.",
+            "source_ids": [
+              "MP_BUDGET_PAGE_2026",
+              "MP_BUDGET_NEWS_2026"
+            ]
+          },
+          {
+            "label": "Generella statsbidrag välfärd",
+            "amount": "2,5 miljarder kr",
+            "direction": "ökad utgift",
+            "notes": "Till kommuner och regioner 2026 enligt budgetmotionens PDF.",
+            "source_ids": [
+              "MP_BUDGET_PDF_2026"
+            ]
+          },
+          {
+            "label": "Sektorsbidrag vård",
+            "amount": "3 miljarder kr",
+            "direction": "ökad utgift",
+            "notes": "Omfördelning/förstärkning till vården enligt budgetmotionens PDF.",
+            "source_ids": [
+              "MP_BUDGET_PDF_2026"
+            ]
+          },
+          {
+            "label": "Primärvård",
+            "amount": "1,5 miljarder kr",
+            "direction": "ökad utgift",
+            "notes": "Primärvårdssatsning enligt budgetmotionens PDF.",
+            "source_ids": [
+              "MP_BUDGET_PDF_2026"
+            ]
+          },
+          {
+            "label": "Kvinnors vård och hälsa",
+            "amount": "600 miljoner kr",
+            "direction": "ökad utgift",
+            "notes": "Satsning i budgetmotionens PDF.",
+            "source_ids": [
+              "MP_BUDGET_PDF_2026"
+            ]
+          },
+          {
+            "label": "Psykiatri",
+            "amount": "500 miljoner kr",
+            "direction": "ökad utgift",
+            "notes": "Stärkt psykiatri enligt budgetmotionens PDF.",
+            "source_ids": [
+              "MP_BUDGET_PDF_2026"
+            ]
+          },
+          {
+            "label": "Filmfond",
+            "amount": "300 miljoner kr/år",
+            "direction": "kulturstöd",
+            "notes": "Ny filmfond enligt budgetnyhet.",
+            "source_ids": [
+              "MP_BUDGET_NEWS_2026"
+            ]
+          },
+          {
+            "label": "Civilsamhälle",
+            "amount": "1 miljard kr",
+            "direction": "ökad utgift",
+            "notes": "Stärkt folkrörelser, föreningsliv och folkbildning enligt budgetnyhet.",
+            "source_ids": [
+              "MP_BUDGET_NEWS_2026"
+            ]
+          }
+        ],
+        "financing": [
+          "Budgetmotionens fullständiga finansiering finns i PDF; dataposten här sammanfattar åtgärder med tydliga belopp från partiets öppna källor."
+        ],
+        "source_ids": [
+          "MP_BUDGET_PAGE_2026",
+          "MP_BUDGET_NEWS_2026",
+          "MP_BUDGET_PDF_2026",
+          "MP_SPRING_2026"
+        ]
+      },
+      "policy_areas": [
+        {
+          "issue_id": "climate_energy",
+          "label": "Klimat och energi",
+          "priority_in_2026_material": "mycket hög",
+          "position_summary": "Valets viktigaste fråga enligt partiet; vill genomföra snabb och rättvis omställning med förnybar energi, klimatfond och gröna investeringar.",
+          "main_proposals": [
+            "Skärpt klimatmål",
+            "Koldioxidbudget",
+            "Mål för konsumtionsutsläpp",
+            "Klimatfond",
+            "Statlig grön investeringsbank",
+            "Förnybar energi",
+            "Gröna industrisatsningar",
+            "Energieffektivisering"
+          ],
+          "budget_or_financing_notes": [
+            "Budgeten uppges vara lagd för att nå klimatmålen; stora klimatinvesteringar och nationell elbilsoffensiv."
+          ],
+          "source_ids": [
+            "MP_VALBUDSKAP_2026",
+            "MP_HANDLINGSPROGRAM_2026",
+            "MP_HANDLINGSPROGRAM_PDF",
+            "MP_BUDGET_PAGE_2026"
+          ],
+          "parent_issue_id": "climate_energy"
+        },
+        {
+          "issue_id": "nature_environment",
+          "label": "Natur, skog och biologisk mångfald",
+          "priority_in_2026_material": "mycket hög",
+          "position_summary": "Vill skydda natur, stärka strandskyddet, restaurera havs- och vattenmiljöer och stoppa förlusten av biologisk mångfald.",
+          "main_proposals": [
+            "Stärkt strandskydd",
+            "Värna allemansrätten",
+            "Skydda skogar med höga naturvärden",
+            "Restaurera hav och vatten",
+            "Skydd av natur och skog"
+          ],
+          "budget_or_financing_notes": [
+            "Budgeten innehåller satsningar på klimatanpassning samt skydd av natur och skog."
+          ],
+          "source_ids": [
+            "MP_VALBUDSKAP_2026",
+            "MP_HANDLINGSPROGRAM_2026",
+            "MP_BUDGET_PAGE_2026"
+          ],
+          "parent_issue_id": "climate_energy"
+        },
+        {
+          "issue_id": "equality_welfare",
+          "label": "Jämlikhet och välfärd",
+          "priority_in_2026_material": "mycket hög",
+          "position_summary": "Vill bryta ekonomiska klyftor och stärka vård, skola och omsorg.",
+          "main_proposals": [
+            "Höjt bostadsbidrag",
+            "Höjt barnbidrag/studiehjälp",
+            "Höjd CSN-bidragsdel",
+            "Återställd ungtandvård och högkostnadsskydd för medicin",
+            "Mer pengar till vård och skola"
+          ],
+          "budget_or_financing_notes": [
+            "2,5 miljarder kr till generella statsbidrag; 3 miljarder kr sektorsbidrag till vården enligt budget-PDF."
+          ],
+          "source_ids": [
+            "MP_VALBUDSKAP_2026",
+            "MP_BUDGET_PAGE_2026",
+            "MP_BUDGET_PDF_2026"
+          ],
+          "parent_issue_id": "welfare_healthcare"
+        },
+        {
+          "issue_id": "healthcare",
+          "label": "Sjukvård och psykisk hälsa",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Vill stärka primärvård, psykiatri, kvinnors vård och folkhälsa.",
+          "main_proposals": [
+            "Ny primärvårdsreform",
+            "1,5 miljarder kr till primärvård",
+            "500 miljoner kr till psykiatri",
+            "600 miljoner kr till kvinnors vård och hälsa",
+            "Förebygga självmord"
+          ],
+          "budget_or_financing_notes": [
+            "Belopp från budgetmotionens PDF."
+          ],
+          "source_ids": [
+            "MP_BUDGET_PDF_2026",
+            "MP_HANDLINGSPROGRAM_PDF"
+          ],
+          "parent_issue_id": "welfare_healthcare"
+        },
+        {
+          "issue_id": "school_education",
+          "label": "Skola",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Vill stärka likvärdig skola, avskaffa marknadsskolan och stoppa vinstuttag.",
+          "main_proposals": [
+            "Avskaffa marknadsskolan",
+            "Stoppa vinstuttag",
+            "Stärkt likvärdighet",
+            "Mer resurser till skolan"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "MP_VALBUDSKAP_2026",
+            "MP_BUDGET_PAGE_2026"
+          ],
+          "parent_issue_id": "school_education"
+        },
+        {
+          "issue_id": "transport",
+          "label": "Transporter och kollektivtrafik",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Vill göra kollektivtrafik och elbilar billigare och mer tillgängliga.",
+          "main_proposals": [
+            "Sverigekort för 499 kr/månad",
+            "Nationell elbilsoffensiv",
+            "Fungerande tåg i hela landet",
+            "Elektrifiering av transportsektorn"
+          ],
+          "budget_or_financing_notes": [
+            "Sverigekort 499 kr/månad enligt budgetkommunikation."
+          ],
+          "source_ids": [
+            "MP_VALBUDSKAP_2026",
+            "MP_BUDGET_PAGE_2026",
+            "MP_BUDGET_NEWS_2026"
+          ],
+          "parent_issue_id": "transport_infrastructure"
+        },
+        {
+          "issue_id": "crime_democracy_culture",
+          "label": "Trygghet, demokrati och kultur",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Vill stärka förebyggande arbete mot kriminalitet, demokrati, kultur och civilsamhälle.",
+          "main_proposals": [
+            "Förebyggande arbete mot kriminalitet",
+            "Återstartsbudget för kulturen",
+            "Ny filmfond",
+            "1 miljard kr till civilsamhället",
+            "Bekämpa mäns våld mot kvinnor"
+          ],
+          "budget_or_financing_notes": [
+            "Filmfond 300 miljoner kr/år och 1 miljard kr till civilsamhälle enligt budgetnyhet."
+          ],
+          "source_ids": [
+            "MP_BUDGET_NEWS_2026"
+          ],
+          "parent_issue_id": "democracy_culture"
+        },
+        {
+          "issue_id": "migration_human_rights",
+          "label": "Migration, mänskliga rättigheter och internationellt",
+          "priority_in_2026_material": "medel",
+          "position_summary": "Handlingsprogrammet inkluderar human och rättssäker migration samt demokrati och mänskliga rättigheter.",
+          "main_proposals": [
+            "Human och rättssäker migration",
+            "Demokrati och mänskliga rättigheter",
+            "Stöd till internationell rätt"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "MP_HANDLINGSPROGRAM_2026",
+            "MP_HANDLINGSPROGRAM_PDF"
+          ],
+          "parent_issue_id": "migration_integration"
+        }
+      ],
+      "sources": [
+        {
+          "id": "MP_VALBUDSKAP_2026",
+          "title": "MP: Sverige vinner på grön politik – valbudskap inför 2026",
+          "url": "https://www.mp.se/just-nu/mp-sverige-vinner-pa-gron-politik-valbudskap-infor-2026/",
+          "source_type": "official_party_news",
+          "retrieved_date": "2026-05-29",
+          "source_date": "2026-04-16"
+        },
+        {
+          "id": "MP_HANDLINGSPROGRAM_2026",
+          "title": "Politiskt handlingsprogram 2026",
+          "url": "https://www.mp.se/politik/politiskt-handlingsprogram-2026/",
+          "source_type": "official_party_page",
+          "retrieved_date": "2026-05-29",
+          "source_date": "2026"
+        },
+        {
+          "id": "MP_HANDLINGSPROGRAM_PDF",
+          "title": "Politiskt handlingsprogram 2026–2030",
+          "url": "https://www.mp.se/wp-content/uploads/2026/04/politiskt-handlingsprogram-2026-2030.pdf",
+          "source_type": "official_party_pdf",
+          "retrieved_date": "2026-05-29",
+          "source_date": "2026-04"
+        },
+        {
+          "id": "MP_BUDGET_PAGE_2026",
+          "title": "MP:s budgetmotion 2026",
+          "url": "https://www.mp.se/mps-budgetmotion-2026/",
+          "source_type": "official_party_page",
+          "retrieved_date": "2026-05-29",
+          "source_date": "2025-10"
+        },
+        {
+          "id": "MP_BUDGET_NEWS_2026",
+          "title": "MP:s budget: Sverige förtjänar bättre",
+          "url": "https://www.mp.se/just-nu/mps-budget-sverige-fortjanar-battre/",
+          "source_type": "official_party_news",
+          "retrieved_date": "2026-05-29",
+          "source_date": "2025-10-03"
+        },
+        {
+          "id": "MP_BUDGET_PDF_2026",
+          "title": "Sverige förtjänar bättre – Miljöpartiets budgetmotion för 2026",
+          "url": "https://www.mp.se/wp-content/uploads/2025/10/mp-budgetmotion-2026.pdf",
+          "source_type": "official_party_pdf",
+          "retrieved_date": "2026-05-29",
+          "source_date": "2025-10"
+        },
+        {
+          "id": "MP_SPRING_2026",
+          "title": "Miljöpartiets vårbudgetmotion 2026",
+          "url": "https://www.mp.se/wp-content/uploads/2026/04/miljopartiet-2026-ars-varbudgetmotion.pdf",
+          "source_type": "official_party_pdf",
+          "retrieved_date": "2026-05-29",
+          "source_date": "2026-04"
+        }
+      ]
+    },
+    {
+      "id": "L",
+      "name": "Liberalerna",
+      "parliamentary_status_2022_2026": "regeringsparti",
+      "election_2026_material_status": {
+        "status": "valkampanj och policyunderlag publicerade; slutligt nationellt valmanifest 2026 ej hittat i sökt officiellt material",
+        "title": "Vi tar ansvar. För din frihet.",
+        "source_ids": [
+          "L_CAMPAIGN_2026",
+          "L_BUDGET_2026",
+          "L_POLITIK",
+          "L_PROGRAMS"
+        ],
+        "data_quality": "medel: tydlig valprofil och politiska områden; uppdatera när fullständigt valmanifest publiceras"
+      },
+      "coalition_or_government_position": "Betonar ansvar, frihetsreformer och fortsatt arbete i nuvarande samarbete; skolan är den viktigaste valfrågan.",
+      "headline_priorities": [
+        "Framtiden börjar i skolan",
+        "Frihet i vardagen",
+        "Sänkta inkomstskatter och stärkt ekonomi",
+        "Trygghet och gängkriminalitet ska tryckas tillbaka",
+        "Eurofrågan, public service och LSS som frihetsreformer"
+      ],
+      "budget_2026": {
+        "status": "regeringsbudgetprofil publicerad av partiet",
+        "headline": "Budgeten lyfter skolan först, kärnkraft/energi, infrastruktur, grön omställning, företagande, sänkt skatt på arbete och pension, sänkt elskatt, tillfälligt sänkt matmoms och riktat stöd till hushåll.",
+        "major_amounts_and_measures": [
+          {
+            "label": "Skolbudget",
+            "amount": "största skolbudgeten i modern tid enligt partiet",
+            "direction": "ökad utgift",
+            "notes": "Mer pengar till lärare, läromedel och trygghet.",
+            "source_ids": [
+              "L_BUDGET_2026"
+            ]
+          },
+          {
+            "label": "Matmoms",
+            "amount": "sänks tillfälligt",
+            "direction": "skattesänkning",
+            "notes": "Tillfällig sänkning av matmomsen.",
+            "source_ids": [
+              "L_BUDGET_2026"
+            ]
+          },
+          {
+            "label": "Elskatt",
+            "amount": "sänks",
+            "direction": "skattesänkning",
+            "notes": "Lägre elskatt.",
+            "source_ids": [
+              "L_BUDGET_2026"
+            ]
+          },
+          {
+            "label": "ISK",
+            "amount": "300 000 kr skattefritt grundavdrag",
+            "direction": "skattesänkning/sparande",
+            "notes": "Från 2026 enligt partiets budgetkommunikation.",
+            "source_ids": [
+              "L_BUDGET_2026"
+            ]
+          },
+          {
+            "label": "Bostadsbidrag",
+            "amount": "upp till +1000 kr/månad",
+            "direction": "hushållsstöd",
+            "notes": "Höjt bostadsbidrag för hushåll med små marginaler.",
+            "source_ids": [
+              "L_BUDGET_2026"
+            ]
+          },
+          {
+            "label": "Sjuk- och aktivitetsersättning",
+            "amount": "funkisskatten slopas",
+            "direction": "skattesänkning/socialförsäkring",
+            "notes": "Täpper till skatteskillnad för personer utan arbetsförmåga.",
+            "source_ids": [
+              "L_BUDGET_2026"
+            ]
+          }
+        ],
+        "financing": [
+          "Budgeten redovisas som del av regeringens 2026-budget; partiets sida sammanfattar Liberalernas profilfrågor men inte komplett finansieringstabell."
+        ],
+        "source_ids": [
+          "L_BUDGET_2026"
+        ]
+      },
+      "policy_areas": [
+        {
+          "issue_id": "school_education",
+          "label": "Skola",
+          "priority_in_2026_material": "mycket hög",
+          "position_summary": "Liberalernas viktigaste fråga. Vill ha kunskapsskola, studiero, fler böcker, färre skärmar och statligt ansvar.",
+          "main_proposals": [
+            "Maxtak för antal elever per klass",
+            "Mindre undervisningsgrupper med speciallärare",
+            "Hjälpklasser för elever som återkommande stör",
+            "Fler spetsklasser",
+            "Riktiga läroböcker",
+            "Mobilfri grundskola",
+            "Fasa ut vinstintresset i friskolesektorn",
+            "Förstatliga de kommunala skolorna",
+            "Stärk lärarnas befogenheter och villkor"
+          ],
+          "budget_or_financing_notes": [
+            "Budgetprofilen anger mer pengar till lärare, läromedel och trygghet."
+          ],
+          "source_ids": [
+            "L_CAMPAIGN_2026",
+            "L_SKOLA",
+            "L_BUDGET_2026"
+          ],
+          "parent_issue_id": "school_education"
+        },
+        {
+          "issue_id": "economy_tax",
+          "label": "Ekonomi, skatt och hushåll",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Vill sänka inkomstskatter och vardagskostnader samt stärka sparande.",
+          "main_proposals": [
+            "Sänkt skatt på arbete och pension",
+            "Sänkt elskatt",
+            "Tillfälligt sänkt matmoms",
+            "ISK-grundavdrag 300 000 kr",
+            "Höjt bostadsbidrag",
+            "Slopad funkisskatt"
+          ],
+          "budget_or_financing_notes": [
+            "Budgetkommunikationen anger höjt bostadsbidrag upp till 1000 kr/månad och skattefritt ISK-grundavdrag 300 000 kr."
+          ],
+          "source_ids": [
+            "L_BUDGET_2026",
+            "L_CAMPAIGN_2026"
+          ],
+          "parent_issue_id": "economy_tax"
+        },
+        {
+          "issue_id": "business_growth",
+          "label": "Företagande och tillväxt",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Vill minska regelkrångel och göra det billigare att anställa.",
+          "main_proposals": [
+            "Utvidgat växa-stöd",
+            "Sänkt arbetsgivaravgift för unga",
+            "Förbättrade 3:12-regler",
+            "Egenmakt och entreprenörskap 2026"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "L_BUDGET_2026",
+            "L_PROGRAMS"
+          ],
+          "parent_issue_id": "jobs_business"
+        },
+        {
+          "issue_id": "climate_energy",
+          "label": "Klimat och energi",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Vill nå klimatmålen genom fossilfri energi, kärnkraft, CCS, innovation, entreprenörskap och frihandel.",
+          "main_proposals": [
+            "Finansiering av ny kärnkraft",
+            "Sol, vind och kärnkraft",
+            "10 miljoner ton infångad CO2 2030 och 20 miljoner ton 2035",
+            "Klimatklivet och Industriklivet",
+            "Elektrifiering av transporter",
+            "Havsbaserad vindkraft"
+          ],
+          "budget_or_financing_notes": [
+            "Budgetprofilen anger kärnkraftsfinansiering, Klimatklivet och Industriklivet."
+          ],
+          "source_ids": [
+            "L_KLIMAT",
+            "L_BUDGET_2026"
+          ],
+          "parent_issue_id": "climate_energy"
+        },
+        {
+          "issue_id": "integration",
+          "label": "Integration och utsatta områden",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Vill ha tydliga krav, jobb, svenska språket och mål om inga utsatta områden 2030.",
+          "main_proposals": [
+            "Inträdesjobb för unga och nyanlända",
+            "Motprestation för bidrag",
+            "Bekämpa parallellsamhällen",
+            "Motverka hedersförtryck",
+            "Förbud/avveckling av religiösa friskolor",
+            "Inga offentliga medel till odemokratiska organisationer"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "L_INTEGRATION"
+          ],
+          "parent_issue_id": "migration_integration"
+        },
+        {
+          "issue_id": "crime_security",
+          "label": "Trygghet och kriminalitet",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Vill fortsätta trycka tillbaka gängkriminaliteten och stärka trygghet i vardagen.",
+          "main_proposals": [
+            "Fokus på gängkriminalitet",
+            "Friheten ska kännas när man låser dörren",
+            "Fotboja som huvudregel vid kontaktförbud enligt relaterad 2026-nyhet"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "L_CAMPAIGN_2026",
+            "L_INTEGRATION"
+          ],
+          "parent_issue_id": "crime_security"
+        },
+        {
+          "issue_id": "health_lss",
+          "label": "Vård, psykisk hälsa och LSS",
+          "priority_in_2026_material": "medel",
+          "position_summary": "Har 2026-rapporter om vårdens tillgänglighet och psykisk hälsa; kampanjen nämner LSS som frihetsreform.",
+          "main_proposals": [
+            "Byggstenar för framtidens vård: ökad tillgänglighet",
+            "Byggstenar för stärkt psykisk hälsa",
+            "Värna LSS"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "L_PROGRAMS",
+            "L_CAMPAIGN_2026"
+          ],
+          "parent_issue_id": "family_social"
+        },
+        {
+          "issue_id": "eu_foreign_democracy",
+          "label": "EU, euro och demokratiska institutioner",
+          "priority_in_2026_material": "hög",
+          "position_summary": "Vill ha folkomröstning om euron och stärka public service; EU och internationell liberalism är centrala.",
+          "main_proposals": [
+            "Folkomröstning om euron",
+            "Stärka public service",
+            "EU-samarbete",
+            "Frihet och internationalism"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "L_CAMPAIGN_2026",
+            "L_PROGRAMS"
+          ],
+          "parent_issue_id": "defense_security"
+        },
+        {
+          "issue_id": "infrastructure",
+          "label": "Infrastruktur",
+          "priority_in_2026_material": "medel",
+          "position_summary": "Vill återupprätta stabil och pålitlig infrastruktur med stora satsningar på väg och järnvägsunderhåll.",
+          "main_proposals": [
+            "Historiska infrastruktursatsningar enligt budgetprofilen",
+            "Underhåll av vägar och järnvägar"
+          ],
+          "budget_or_financing_notes": [],
+          "source_ids": [
+            "L_BUDGET_2026"
+          ],
+          "parent_issue_id": "transport_infrastructure"
+        }
+      ],
+      "sources": [
+        {
+          "id": "L_CAMPAIGN_2026",
+          "title": "Liberalernas valkampanj inför valet 2026",
+          "url": "https://www.liberalerna.se/simona-mohamsson/liberalernas-valkampanj-infor-valet-2026",
+          "source_type": "official_party_news",
+          "retrieved_date": "2026-05-29",
+          "source_date": "2026-04-23"
+        },
+        {
+          "id": "L_BUDGET_2026",
+          "title": "En budget för framtidstro",
+          "url": "https://www.liberalerna.se/liberalerna/en-budget-for-framtidstro",
+          "source_type": "official_party_news",
+          "retrieved_date": "2026-05-29",
+          "source_date": "2025-11-27"
+        },
+        {
+          "id": "L_POLITIK",
+          "title": "Vår politik",
+          "url": "https://www.liberalerna.se/politik",
+          "source_type": "official_party_page",
+          "retrieved_date": "2026-05-29"
+        },
+        {
+          "id": "L_SKOLA",
+          "title": "Skola",
+          "url": "https://www.liberalerna.se/politik/skola",
+          "source_type": "official_party_page",
+          "retrieved_date": "2026-05-29"
+        },
+        {
+          "id": "L_INTEGRATION",
+          "title": "Integration",
+          "url": "https://www.liberalerna.se/politik/integration",
+          "source_type": "official_party_page",
+          "retrieved_date": "2026-05-29"
+        },
+        {
+          "id": "L_KLIMAT",
+          "title": "Klimatet",
+          "url": "https://www.liberalerna.se/politik/klimatet",
+          "source_type": "official_party_page",
+          "retrieved_date": "2026-05-29"
+        },
+        {
+          "id": "L_PROGRAMS",
+          "title": "Program och rapporter",
+          "url": "https://www.liberalerna.se/program-och-rapporter",
+          "source_type": "official_party_page",
+          "retrieved_date": "2026-05-29",
+          "source_date": "2026"
+        }
+      ]
+    }
+  ],
+  "derived_valkompass_axes": [
+    {
+      "statement_id": "tax_work_should_be_lowered",
+      "statement_sv": "Skatten på arbete och pension bör sänkas även om reformutrymmet minskar.",
+      "positions": {
+        "S": "delvis_emot",
+        "M": "för",
+        "SD": "delvis_för",
+        "V": "emot",
+        "C": "delvis_för",
+        "KD": "för",
+        "MP": "oklart_delvis_emot",
+        "L": "för"
+      },
+      "confidence": "medium",
+      "notes": "Bygger på budgetprofil; exakta nivåer skiljer sig."
+    },
+    {
+      "statement_id": "temporary_food_vat_cut",
+      "statement_sv": "Matmomsen bör sänkas tillfälligt för att stärka hushållen.",
+      "positions": {
+        "S": "ej_tydligt_i_källor",
+        "M": "för",
+        "SD": "oklart",
+        "V": "ej_prioriterat",
+        "C": "oklart",
+        "KD": "för",
+        "MP": "ej_prioriterat",
+        "L": "för"
+      },
+      "confidence": "medium"
+    },
+    {
+      "statement_id": "child_benefit_should_increase",
+      "statement_sv": "Barnbidrag och studiestöd bör höjas kraftigt.",
+      "positions": {
+        "S": "för",
+        "M": "oklart",
+        "SD": "oklart",
+        "V": "för",
+        "C": "oklart",
+        "KD": "delvis_för_hushållsstöd",
+        "MP": "för",
+        "L": "oklart"
+      },
+      "confidence": "medium"
+    },
+    {
+      "statement_id": "profits_in_school_should_be_stopped",
+      "statement_sv": "Vinstuttag i skolan bör förbjudas eller fasas ut.",
+      "positions": {
+        "S": "för",
+        "M": "oklart_emot",
+        "SD": "oklart",
+        "V": "för",
+        "C": "oklart",
+        "KD": "oklart",
+        "MP": "för",
+        "L": "för_fasa_ut"
+      },
+      "confidence": "medium"
+    },
+    {
+      "statement_id": "state_should_take_over_school",
+      "statement_sv": "Staten bör ta över huvudansvaret för skolan.",
+      "positions": {
+        "S": "oklart",
+        "M": "oklart",
+        "SD": "oklart",
+        "V": "oklart",
+        "C": "oklart",
+        "KD": "oklart",
+        "MP": "oklart",
+        "L": "för"
+      },
+      "confidence": "low_to_medium"
+    },
+    {
+      "statement_id": "strict_migration",
+      "statement_sv": "Sverige bör fortsätta ha en mycket stram migrationspolitik.",
+      "positions": {
+        "S": "för",
+        "M": "för",
+        "SD": "starkt_för",
+        "V": "emot",
+        "C": "delvis_emot",
+        "KD": "för",
+        "MP": "emot",
+        "L": "för_kravbaserad"
+      },
+      "confidence": "medium"
+    },
+    {
+      "statement_id": "religious_free_schools_ban",
+      "statement_sv": "Religiösa friskolor bör förbjudas eller avvecklas.",
+      "positions": {
+        "S": "för",
+        "M": "oklart",
+        "SD": "oklart",
+        "V": "oklart",
+        "C": "oklart",
+        "KD": "oklart",
+        "MP": "oklart",
+        "L": "för"
+      },
+      "confidence": "medium"
+    },
+    {
+      "statement_id": "national_public_transport_card",
+      "statement_sv": "Staten bör införa ett billigt nationellt kollektivtrafikkort.",
+      "positions": {
+        "S": "delvis_för_unga_studenter",
+        "M": "oklart",
+        "SD": "oklart",
+        "V": "för",
+        "C": "oklart",
+        "KD": "oklart",
+        "MP": "för",
+        "L": "oklart"
+      },
+      "confidence": "medium"
+    },
+    {
+      "statement_id": "new_nuclear_power_state_support",
+      "statement_sv": "Staten bör stödja ny kärnkraft som central del av klimatomställningen.",
+      "positions": {
+        "S": "oklart",
+        "M": "delvis_för",
+        "SD": "för",
+        "V": "emot/ej_prioriterat",
+        "C": "oklart",
+        "KD": "för",
+        "MP": "emot",
+        "L": "för"
+      },
+      "confidence": "medium"
+    },
+    {
+      "statement_id": "renewables_first",
+      "statement_sv": "Förnybar energi bör prioriteras framför kärnkraft.",
+      "positions": {
+        "S": "oklart",
+        "M": "emot/neutral_fossilfritt",
+        "SD": "emot/oklart",
+        "V": "för",
+        "C": "för",
+        "KD": "oklart",
+        "MP": "starkt_för",
+        "L": "emot/neutral_fossilfritt"
+      },
+      "confidence": "medium"
+    },
+    {
+      "statement_id": "abolish_regions_healthcare",
+      "statement_sv": "Regionerna bör avskaffas och sjukvårdsansvaret samlas nationellt.",
+      "positions": {
+        "S": "oklart",
+        "M": "oklart",
+        "SD": "oklart",
+        "V": "delvis_statlig_finansiering",
+        "C": "oklart",
+        "KD": "för",
+        "MP": "oklart",
+        "L": "oklart"
+      },
+      "confidence": "medium"
+    },
+    {
+      "statement_id": "euro_referendum",
+      "statement_sv": "Sverige bör hålla folkomröstning om euron.",
+      "positions": {
+        "S": "oklart",
+        "M": "oklart",
+        "SD": "emot_euro_independent_currency",
+        "V": "oklart/emot_eu_integration",
+        "C": "oklart",
+        "KD": "oklart",
+        "MP": "oklart",
+        "L": "för"
+      },
+      "confidence": "medium"
+    },
+    {
+      "statement_id": "bank_tax_finance_welfare",
+      "statement_sv": "Banker bör beskattas extra för att finansiera välfärd eller hushållsstöd.",
+      "positions": {
+        "S": "för",
+        "M": "emot/oklart",
+        "SD": "oklart",
+        "V": "för",
+        "C": "oklart",
+        "KD": "oklart",
+        "MP": "oklart",
+        "L": "emot/oklart"
+      },
+      "confidence": "medium"
+    }
+  ]
+}
